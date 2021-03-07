@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.buyer.web.mapper.TeachPractiseOtherMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.teach.pojo.mall.entity.TeachPractiseOther">
+        <id column="id" property="id" />
+        <result column="job_no" property="jobNo" />
+        <result column="teacher_name" property="teacherName" />
+        <result column="first_graduation_point" property="firstGraduationPoint" />
+        <result column="first_year_point" property="firstYearPoint" />
+        <result column="first_revolution_point" property="firstRevolutionPoint" />
+        <result column="first_course_point" property="firstCoursePoint" />
+        <result column="first_practise_point" property="firstPractisePoint" />
+        <result column="second_graduation_point" property="secondGraduationPoint" />
+        <result column="second_year_point" property="secondYearPoint" />
+        <result column="second_revolution_point" property="secondRevolutionPoint" />
+        <result column="second_course_point" property="secondCoursePoint" />
+        <result column="second_practise_point" property="secondPractisePoint" />
+        <result column="total_point" property="totalPoint" />
+        <result column="teacher_id" property="teacherId" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="commit_time" property="commitTime" />
+        <result column="audit_time" property="auditTime" />
+        <result column="manager_id" property="managerId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, job_no, teacher_name, first_graduation_point, first_year_point, first_revolution_point, first_course_point, first_practise_point, second_graduation_point, second_year_point, second_revolution_point, second_course_point, second_practise_point, total_point, teacher_id, status, create_time, commit_time, audit_time, manager_id
+    </sql>
+
+</mapper>

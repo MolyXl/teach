@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.buyer.web.mapper.TeachPractisePaperMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.teach.pojo.mall.entity.TeachPractisePaper">
+        <id column="id" property="id" />
+        <result column="job_no" property="jobNo" />
+        <result column="teacher_name" property="teacherName" />
+        <result column="link_type" property="linkType" />
+        <result column="class_name" property="className" />
+        <result column="student_amount" property="studentAmount" />
+        <result column="design_type" property="designType" />
+        <result column="paper_point" property="paperPoint" />
+        <result column="paper_student_amount" property="paperStudentAmount" />
+        <result column="total_paper_amount" property="totalPaperAmount" />
+        <result column="innovative_level" property="innovativeLevel" />
+        <result column="innovative_point" property="innovativePoint" />
+        <result column="teacher_id" property="teacherId" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="commit_time" property="commitTime" />
+        <result column="audit_time" property="auditTime" />
+        <result column="manager_id" property="managerId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, job_no, teacher_name, link_type, class, student_amount, design_type, paper_point, paper_student_amount, total_paper_amount, innovative_level, innovative_point, teacher_id, status, create_time, commit_time, audit_time, manager_id
+    </sql>
+
+</mapper>

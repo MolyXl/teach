@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.buyer.web.mapper.TeachRevolutionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.teach.pojo.mall.entity.TeachRevolution">
+        <id column="id" property="id" />
+        <result column="type" property="type" />
+        <result column="course" property="course" />
+        <result column="level" property="level" />
+        <result column="project_name" property="projectName" />
+        <result column="approval_date" property="approvalDate" />
+        <result column="build_period" property="buildPeriod" />
+        <result column="year_finish_status" property="yearFinishStatus" />
+        <result column="project_build_status" property="projectBuildStatus" />
+        <result column="charge_man" property="chargeMan" />
+        <result column="year_point" property="yearPoint" />
+        <result column="project_point" property="projectPoint" />
+        <result column="teacher_id" property="teacherId" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="commit_time" property="commitTime" />
+        <result column="audit_time" property="auditTime" />
+        <result column="manager_id" property="managerId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, type, course, level, project_name, approval_date, build_period, year_finish_status, project_build_status, charge_man, year_point, project_point, teacher_id, status, create_time, commit_time, audit_time, manager_id
+    </sql>
+
+</mapper>

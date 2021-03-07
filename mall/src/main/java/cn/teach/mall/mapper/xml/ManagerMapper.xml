@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.teach.mall.mapper.ManagerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.teach.pojo.mall.entity.Manager">
+        <id column="id" property="id"/>
+        <result column="account" property="account"/>
+        <result column="password" property="password"/>
+        <result column="head_portrait" property="headPortrait"/>
+        <result column="name" property="name"/>
+        <result column="phone_no" property="phoneNo"/>
+        <result column="role_id" property="roleId"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, account, password, head_portrait, name, phone_no, status, create_time
+    </sql>
+    <select id="pageForManagerVo" resultType="cn.teach.pojo.mall.vo.ManagerVo">
+        select m.*,r.name roleName from manager m left join role r on m.role_id = r.id
+        <where>
+            <if test="param != null">
+                <if test="param.account != null and param.account!= ''">
+                    m.account like "%"#{param.account}"%"
+                </if>
+                <if test="param.roleId != null and param.roleId !=''">
+                    m.role_id = #{param.roleId}
+                </if>
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+</mapper>
