@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>添加商品</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/static/style/admin.css}" media="all">
+</head>
+<body>
+<style>
+    .layui-form-label {
+        float: left;
+        display: block;
+        padding: 9px 15px;
+        width: 120px;
+        font-weight: 400;
+        line-height: 20px;
+        text-align: right
+    }
+</style>
+<div class="layui-form" lay-filter="layuiadmin-form-useradmin" id="layuiadmin-form-useradmin"
+     style="padding: 20px 0 0 0;">
+    <div>
+        <input type="hidden" id="id" name="id" th:value="${id}">
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span class="required"></span>人员账号:</label>
+            <div class="layui-input-inline">
+                <input type="text" id="account" autocomplete="off" class="layui-input" readonly>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">登录密码:</label>
+            <div class="layui-input-inline">
+                <input type="password" id="password" name="password" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">姓名:</label>
+            <div class="layui-input-inline">
+                <input type="text" id="name" name="name" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span class="required"></span>角色:</label>
+            <div class="layui-input-inline">
+                <select id="roleId" name="roleId" lay-filter="required" lay-verify="required">
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item" style="text-align: center">
+            <div class="layui-form-item layui-hide">
+                <input type="button" lay-submit lay-filter="save" id="save" value="确认">
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/static/layui/layui.js}"></script>
+<script th:src="@{/static/layui/master.js}"></script>
+<script th:inline="javascript">
+    var id = [[${id}]];
+</script>
+<script>
+    layui.config({
+        base: '/static/'
+    }).extend({
+        index: 'lib/index'
+    }).use(['index', 'form', 'upload', "element"], function () {
+        var $ = layui.$;
+        var form = layui.form;
+        var upload = layui.upload;
+        upload.render({
+            elem: '#uploadPic',
+            url: '/file/uploadFile',
+            before: function (obj) {
+                obj.preview(function (index, file, result) {
+                    $('#majorImg').attr('src', result);
+                });
+            },
+            done: function (res) {
+                if (res.errorCode != "0000") {
+                    return layer.msg('上传失败');
+                } else {
+                    $("#headPortrait").val(res.data.path);
+                    form.render();
+                }
+            }
+        });
+        $(function () {
+            $.ajax({
+                type: "get",
+                url: "/manager/get",
+                data: {id: id},
+                success: function (res) {
+                    var data = res.data;
+                    if (res.errorCode === "0000") {
+                        $("#headPortrait").val(data.headPortrait);
+                        $("#majorImg").attr("src", data.headPortrait);
+                        $("#account").val(data.account);
+                        $("#name").val(data.name);
+                        $("#phoneNo").val(data.phoneNo);
+                        $.ajax({
+                            type: "get",
+                            url: "/role/getRoleList",
+                            async: false,
+                            success: function (res) {
+                                var type = res.data;
+                                var html = "<option value=''>请选择</option>";
+                                $.each(type, function (k, v) {
+                                    html += '<option value="' + v.id + '">' + v.name + '</option>'
+                                });
+                                $("#roleId").html(html);
+                                form.render();
+                            }
+                        })
+                        $('#roleId').siblings("div.layui-form-select").find('dl').find('dd[lay-value=' + data.roleId + ']').click();
+                    }
+                }
+            })
+        })
+    })
+
+</script>
+</body>
+</html>

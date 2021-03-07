@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>编辑用户</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/static/style/admin.css}" media="all">
+    <link rel="stylesheet" th:href="@{/static/style/style.css}" media="all">
+</head>
+<body>
+<style>
+    .img {
+        margin-top: 10px;
+        margin-left: 50px;
+        width: 150px;
+        height: auto;
+    }
+
+    .layui-input-inline {
+        margin-left: 50px;
+    }
+
+    .uploadBtn {
+        margin-left: 50px;
+    }
+
+    .layui-form-label {
+        float: left;
+        display: block;
+        padding: 9px 15px;
+        width: 150px;
+        font-weight: 400;
+        line-height: 20px;
+        text-align: right
+    }
+
+</style>
+<div class="layui-form">
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <input type="hidden" id="id" name="id">
+                <div class="layui-card-body layui-row">
+                    <div class="layui-col-md4  layui-col-sm4">
+                        <div class="layui-form" lay-filter="">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label"></span>会员海报设置:</label>
+                                <div class="layui-upload-list">
+                                    <input type="text" name="memberPosterUrl" id="memberPosterUrl" lay-verify="required"
+                                           style="display: none;">
+                                    <img class="img" id="memberPosterImg" src="">
+                                    <button type="button" class="layui-btn uploadBtn" id="uploadMemberPoster">上传图片
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">用户海报设置:</label>
+                                <div class="layui-upload-list">
+                                    <input type="text" name="userPosterUrl" id="userPosterUrl" lay-verify="required"
+                                           style="display: none;">
+                                    <img class="img" id="userPosterImg" src="">
+                                    <button type="button" class="layui-btn uploadBtn" id="uploadUserPoster">上传图片
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-md4  layui-col-sm4">
+                        <div class="layui-form" lay-filter="">
+
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">经销商海报设置:</label>
+                                <div class="layui-upload-list">
+                                    <input type="text" name="agentPosterUrl" id="agentPosterUrl" lay-verify="required"
+                                           style="display: none;">
+                                    <img class="img" id="agentPosterImg" src="">
+                                    <button type="button" class="layui-btn uploadBtn" id="uploadAgentPoster">上传图片
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">客服二维码:</label>
+                                <div class="layui-upload-list">
+                                    <input type="text" name="serviceQrcodeUrl" id="serviceQrcodeUrl"
+                                           lay-verify="required"
+                                           style="display: none;">
+                                    <img class="img" id="serviceQrcodeImg" src="">
+                                    <button type="button" class="layui-btn uploadBtn" id="uploadServiceQrcode">上传图片
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-card-body layui-row">
+                    <div class="layui-col-md4  layui-col-sm4">
+                        <div class="layui-form" lay-filter="">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">新用户可得积分:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="registerCredit" name="registerCredit" lay-verify="required"
+                                           autocomplete="off"
+                                           class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">玉币抵现比例:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="coinMoney" name="coinMoney" lay-verify="required"
+                                           autocomplete="off"
+                                           class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">最低提现金额:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="minWithdraw" name="minWithdraw" lay-verify="required"
+                                           autocomplete="off"
+                                           class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">客服热线:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="serviceNo" name="serviceNo" lay-verify="required"
+                                           autocomplete="off"
+                                           class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">第一天签到积分:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="dayFirst" name="dayFirst" lay-verify="required"
+                                           autocomplete="off"
+                                           class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">第三天签到积分:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="dayThird" name="dayThird" lay-verify="required"
+                                           autocomplete="off"
+                                           class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">第五天签到积分:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="dayFifth" name="dayFifth" lay-verify="required"
+                                           autocomplete="off"
+                                           class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">第七天签到积分:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="daySeventh" name="daySeventh" lay-verify="required"
+                                           autocomplete="off"
+                                           class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-md4  layui-col-sm4">
+                        <div class="layui-form" lay-filter="">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">推荐可得积分:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="recommendCredit" name="recommendCredit" lay-verify="required"
+                                           autocomplete="off"
+                                           class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">最高提现金额:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="maxWithdraw" name="maxWithdraw" lay-verify="required"
+                                           autocomplete="off"
+                                           class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">单笔提现手续费:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="formalities" name="formalities" lay-verify="required"
+                                           autocomplete="off"
+                                           class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">客服邮箱:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="serviceEmail" name="serviceEmail" lay-verify="required"
+                                           autocomplete="off"
+                                           class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">第二天签到积分:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="daySeconds" name="daySeconds" lay-verify="required"
+                                           autocomplete="off"
+                                           class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">第四天签到积分:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="dayForth" name="dayForth" lay-verify="required"
+                                           autocomplete="off"
+                                           class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">第六天签到积分:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="daySixth" name="daySixth" lay-verify="required"
+                                           autocomplete="off"
+                                           class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item" style="margin-top: 10px;margin-left: 350px">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit lay-filter="subBtn">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/static/layui/layui.js}"></script>
+<script th:src="@{/static/layui/master.js}"></script>
+<script>
+    layui.config({
+        base: '/static/'
+    }).extend({
+        index: 'lib/index'
+    }).use(['index', 'form', 'upload', "element", "table"], function () {
+        var $ = layui.$;
+        var form = layui.form;
+        var upload = layui.upload;
+        upload.render({
+            elem: '#uploadMemberPoster',
+            url: '/file/uploadFile',
+            before: function (obj) {
+                obj.preview(function (index, file, result) {
+                    $('#memberPosterImg').attr('src', result);
+                });
+            },
+            done: function (res) {
+                if (res.errorCode !== "0000") {
+                    return layer.msg('上传失败');
+                } else {
+                    $("#memberPosterUrl").val(res.data.path);
+                    form.render();
+                }
+            }
+        });
+        upload.render({
+            elem: '#uploadUserPoster',
+            url: '/file/uploadFile',
+            before: function (obj) {
+                obj.preview(function (index, file, result) {
+                    $('#userPosterImg').attr('src', result);
+                });
+            },
+            done: function (res) {
+                if (res.errorCode !== "0000") {
+                    return layer.msg('上传失败');
+                } else {
+                    $("#userPosterUrl").val(res.data.path);
+                    form.render();
+                }
+            }
+        });
+        upload.render({
+            elem: '#uploadAgentPoster',
+            url: '/file/uploadFile',
+            before: function (obj) {
+                obj.preview(function (index, file, result) {
+                    $('#agentPosterImg').attr('src', result);
+                });
+            },
+            done: function (res) {
+                if (res.errorCode !== "0000") {
+                    return layer.msg('上传失败');
+                } else {
+                    $("#agentPosterUrl").val(res.data.path);
+                    form.render();
+                }
+            }
+        });
+        upload.render({
+            elem: '#uploadServiceQrcode',
+            url: '/file/uploadFile',
+            before: function (obj) {
+                obj.preview(function (index, file, result) {
+                    $('#serviceQrcodeImg').attr('src', result);
+                });
+            },
+            done: function (res) {
+                if (res.errorCode !== "0000") {
+                    return layer.msg('上传失败');
+                } else {
+                    $("#serviceQrcodeUrl").val(res.data.path);
+                    form.render();
+                }
+            }
+        });
+        $(function () {
+            $.ajax({
+                type: "get",
+                url: "/setting/getSetting",
+                success: function (res) {
+                    var data = res.data;
+                    $("#id").val(data.id);
+                    $("#memberPosterImg").attr("src", data.memberPosterUrl);
+                    $("#memberPosterUrl").val(data.memberPosterUrl);
+
+                    $("#agentPosterImg").attr("src", data.agentPosterUrl);
+                    $("#agentPosterUrl").val(data.agentPosterUrl);
+
+                    $("#userPosterImg").attr("src", data.userPosterUrl);
+                    $("#userPosterUrl").val(data.userPosterUrl);
+
+                    $("#serviceQrcodeImg").attr("src", data.serviceQrcodeUrl);
+                    $("#serviceQrcodeUrl").val(data.serviceQrcodeUrl);
+
+                    $("#registerCredit").val(data.registerCredit);
+                    $("#recommendCredit").val(data.recommendCredit);
+                    $("#coinMoney").val(data.coinMoney);
+                    $("#maxWithdraw").val(data.maxWithdraw);
+                    $("#minWithdraw").val(data.minWithdraw);
+                    $("#formalities").val(data.formalities);
+                    $("#serviceNo").val(data.serviceNo);
+                    $("#serviceEmail").val(data.serviceEmail);
+                    $("#dayFirst").val(data.dayFirst);
+                    $("#daySeconds").val(data.daySeconds);
+                    $("#dayThird").val(data.dayThird);
+                    $("#dayForth").val(data.dayForth);
+                    $("#dayFifth").val(data.dayFifth);
+                    $("#daySixth").val(data.daySixth);
+                    $("#daySeventh").val(data.daySeventh);
+                }
+            })
+        });
+        form.on('submit(subBtn)', function (data) {
+            var field = data.field;
+            $.ajax({
+                type: "post",
+                url: "/setting/update",
+                data: field,
+                success: function (res) {
+                    if (res.errorCode === "0000") {
+                        layer.msg("保存成功");
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 2000)
+
+                    } else {
+                        layer.msg(res.errorMsg);
+                    }
+                }
+            })
+        });
+    })
+</script>
+</body>
+</html>
