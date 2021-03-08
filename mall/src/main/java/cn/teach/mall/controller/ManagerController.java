@@ -51,7 +51,7 @@ public class ManagerController {
      * @Description: 登录
      */
     @RequestMapping("/login")
-    public ResponseEntity login(String account, String password,String validate,HttpSession session) {
+    public ResponseEntity login(String account, String password, String validate, HttpSession session) {
         /*String validateCode = session.getAttribute("validate").toString();
         if(!validateCode.equalsIgnoreCase(validate)){
             return new ResponseEntity<>(ResultErrorCode.FAIL, "验证码输入错误");
@@ -83,6 +83,9 @@ public class ManagerController {
             result.put("manager", one);
             result.put("parentMenuList", parentMenuList);
             result.put("menuList", menuList);
+            session.setAttribute("managerId", one.getId());
+            session.setAttribute("managerName", one.getName());
+            session.setAttribute("jobNo", one.getJobNo());
             return new ResponseEntity<>(ResultErrorCode.SUCCESS, "登录成功", result);
         } else {
             return new ResponseEntity<>(ResultErrorCode.FAIL, "账号或密码错误");
@@ -98,7 +101,7 @@ public class ManagerController {
     public ResponseEntity updatePassword(String headPortrait, String account, String password, HttpServletRequest request) {
         HttpSession session = request.getSession();
         UpdateWrapper<Manager> updateWrapper = new UpdateWrapper<>();
-        updateWrapper.set(!StringUtils.isEmpty(password),"password", MD5Utils.MD5(password));
+        updateWrapper.set(!StringUtils.isEmpty(password), "password", MD5Utils.MD5(password));
         updateWrapper.eq("account", account);
         boolean update = iManagerService.update(updateWrapper);
         if (update) {
@@ -146,7 +149,7 @@ public class ManagerController {
     public ResponseEntity update(ManagerBo manager) {
         if (!StringUtils.isEmpty(manager.getPassword())) {
             manager.setPassword(MD5Utils.MD5(manager.getPassword()));
-        }else{
+        } else {
             manager.setPassword(null);
         }
         return ResponseHelper.returnResponse(iManagerService.updateById(manager));

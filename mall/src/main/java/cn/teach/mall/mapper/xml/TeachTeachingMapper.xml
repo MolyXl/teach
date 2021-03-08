@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.buyer.web.mapper.TeachTeachingMapper">
+<mapper namespace="cn.teach.mall.mapper.TeachTeachingMapper">
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="cn.teach.pojo.mall.entity.TeachTeaching">
@@ -27,5 +27,7 @@
     <sql id="Base_Column_List">
         id, job_no, teacher_name, first_teach_point, first_inspect_point, first_other_point, first_total_point, second_teach_point, second_inspect_point, second_other_point, secong_total_point, teacher_id, status, create_time, commit_time, audit_time, manager_id
     </sql>
-
+    <select id="pageForTeachTeaching" resultType="cn.teach.pojo.mall.entity.TeachTeaching">
+        select * from teach_teaching order by create_time desc
+    </select>
 </mapper>

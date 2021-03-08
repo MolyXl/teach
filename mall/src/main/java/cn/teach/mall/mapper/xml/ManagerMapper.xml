@@ -27,7 +27,7 @@
                     m.account like "%"#{param.account}"%"
                 </if>
                 <if test="param.roleId != null and param.roleId !=''">
-                    m.role_id = #{param.roleId}
+                    and m.role_id = #{param.roleId}
                 </if>
             </if>
         </where>

@@ -1,7 +1,13 @@
 package cn.teach.mall.service;
 
+import cn.teach.common.mvc.Page;
 import cn.teach.pojo.mall.entity.TeachCourse;
+import cn.teach.pojo.mall.entity.TeachTeaching;
+import cn.teach.pojo.mall.vo.RoleVo;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -12,5 +18,4 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2021-03-07
  */
 public interface ITeachCourseService extends IService<TeachCourse> {
-
 }

@@ -1,7 +1,12 @@
 package cn.teach.mall.mapper;
 
+import cn.teach.common.mvc.Page;
 import cn.teach.pojo.mall.entity.TeachTeaching;
+import cn.teach.pojo.mall.vo.RoleVo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -13,4 +18,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface TeachTeachingMapper extends BaseMapper<TeachTeaching> {
 
+    IPage<TeachTeaching> pageForTeachTeaching(Page<TeachTeaching> page, Map<String, Object> param);
 }

@@ -42,6 +42,11 @@ public class Manager implements Serializable {
     private String name;
 
     /**
+     * 工号
+     */
+    private String jobNo;
+
+    /**
      * 角色Id
      */
     private Integer roleId;
@@ -92,6 +97,13 @@ public class Manager implements Serializable {
         this.name = name;
     }
 
+    public String getJobNo() {
+        return jobNo;
+    }
+
+    public void setJobNo(String jobNo) {
+        this.jobNo = jobNo;
+    }
 
     public Integer getRoleId() {
         return roleId;
