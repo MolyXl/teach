@@ -31,7 +31,12 @@ public class TeachCourse implements Serializable {
     private String teacherName;
 
     /**
-     * 主要班级
+     * 课程名称
+     */
+    private String courseName;
+
+    /**
+     * 上课班级
      */
     private String className;
 
@@ -169,6 +174,14 @@ public class TeachCourse implements Serializable {
 
     public void setClassName(String className) {
         this.className = className;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 
     public String getType() {

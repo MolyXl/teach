@@ -28,7 +28,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, job_no, teacher_name, position, education, unit, course, class, student_amount, week_class_hour, week, class_hour, price, total_price, teacher_id, status, create_time, commit_time, audit_time, manager_id
+        id, job_no, teacher_name, position, education, unit, course, class_name, student_amount, week_class_hour, week, class_hour, price, total_price, teacher_id, status, create_time, commit_time, audit_time, manager_id
     </sql>
 
 </mapper>
