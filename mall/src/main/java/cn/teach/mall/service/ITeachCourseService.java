@@ -18,4 +18,5 @@ import java.util.Map;
  * @since 2021-03-07
  */
 public interface ITeachCourseService extends IService<TeachCourse> {
+    IPage<TeachCourse> pageForTeachCourse(Page<TeachCourse> page, Map<String, Object> param);
 }

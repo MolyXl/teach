@@ -31,9 +31,15 @@ public class TeachCourse implements Serializable {
     private String teacherName;
 
     /**
-     * 主要班级
+     * 课程名称
+     */
+    private String courseName;
+
+    /**
+     * 上课班级
      */
     private String className;
+
 
     /**
      * 类别(1,课堂;2,课程实践;3,实验课)
@@ -331,33 +337,42 @@ public class TeachCourse implements Serializable {
         this.managerId = managerId;
     }
 
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
     @Override
     public String toString() {
         return "TeachCourse{" +
-        "id=" + id +
-        ", jobNo=" + jobNo +
-        ", teacherName=" + teacherName +
-        ", className=" + className +
-        ", type=" + type +
-        ", courseType=" + courseType +
-        ", specialCourse=" + specialCourse +
-        ", weekHour=" + weekHour +
-        ", weeks=" + weeks +
-        ", originalClassHour=" + originalClassHour +
-        ", studentAmount=" + studentAmount +
-        ", classCoefficient=" + classCoefficient +
-        ", courseCoefficient=" + courseCoefficient +
-        ", teachResultCoefficient=" + teachResultCoefficient +
-        ", courseTeachPoing=" + courseTeachPoing +
-        ", inspectType=" + inspectType +
-        ", inspectTypeCoefficient=" + inspectTypeCoefficient +
-        ", markExamPoint=" + markExamPoint +
-        ", teacherId=" + teacherId +
-        ", status=" + status +
-        ", createTime=" + createTime +
-        ", commitTime=" + commitTime +
-        ", auditTime=" + auditTime +
-        ", managerId=" + managerId +
-        "}";
+                "id=" + id +
+                ", jobNo='" + jobNo + '\'' +
+                ", teacherName='" + teacherName + '\'' +
+                ", courseName='" + courseName + '\'' +
+                ", className='" + className + '\'' +
+                ", type='" + type + '\'' +
+                ", courseType='" + courseType + '\'' +
+                ", specialCourse='" + specialCourse + '\'' +
+                ", weekHour=" + weekHour +
+                ", weeks=" + weeks +
+                ", originalClassHour=" + originalClassHour +
+                ", studentAmount=" + studentAmount +
+                ", classCoefficient=" + classCoefficient +
+                ", courseCoefficient=" + courseCoefficient +
+                ", teachResultCoefficient=" + teachResultCoefficient +
+                ", courseTeachPoing=" + courseTeachPoing +
+                ", inspectType='" + inspectType + '\'' +
+                ", inspectTypeCoefficient=" + inspectTypeCoefficient +
+                ", markExamPoint=" + markExamPoint +
+                ", teacherId=" + teacherId +
+                ", status=" + status +
+                ", createTime=" + createTime +
+                ", commitTime=" + commitTime +
+                ", auditTime=" + auditTime +
+                ", managerId=" + managerId +
+                '}';
     }
 }

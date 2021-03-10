@@ -34,5 +34,7 @@
     <sql id="Base_Column_List">
         id, job_no, teacher_name, class, type, course_type, special_course, week_hour, weeks, original_class_hour, student_amount, class_coefficient, course_coefficient, teach_result_coefficient, course_teach_poing, inspect_type, inspect_type_coefficient, mark_exam_point, teacher_id, status, create_time, commit_time, audit_time, manager_id
     </sql>
-
+    <select id="pageForTeachCourse" resultType="cn.teach.pojo.mall.entity.TeachCourse">
+        select * from teach_course order by create_time desc
+    </select>
 </mapper>
