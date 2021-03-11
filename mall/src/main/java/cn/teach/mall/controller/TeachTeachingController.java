@@ -62,7 +62,7 @@ public class TeachTeachingController {
      */
     @RequestMapping("/saveOrUpdate")
     public ResponseEntity saveOrUpdate(TeachTeaching teachTeaching, HttpSession session) {
-        if (teachTeaching.getId() != null) {
+        if (teachTeaching.getId() != null && teachTeaching.getId() != -1) {
             if (teachTeaching.getStatus() == 1) {
                 teachTeaching.setCommitTime(new Date());
             } else if (teachTeaching.getStatus() == 2 || teachTeaching.getStatus() == 3) {
@@ -71,6 +71,7 @@ public class TeachTeachingController {
             }
             return ResponseHelper.returnResponse(iTeachTeachingService.updateById(teachTeaching));
         } else {
+            teachTeaching.setId(null);
             teachTeaching.setCreateTime(new Date());
             teachTeaching.setStatus(0);
             teachTeaching.setJobNo(session.getAttribute("jobNo").toString());
@@ -78,6 +79,16 @@ public class TeachTeachingController {
             teachTeaching.setTeacherName(session.getAttribute("managerName").toString());
             return ResponseHelper.returnResponse(iTeachTeachingService.save(teachTeaching));
         }
+    }
+
+    /**
+     * @Author: MaZhuli
+     * @Date: 2021/3/8
+     * @Description: 删除
+     */
+    @RequestMapping("/get")
+    public ResponseEntity<TeachTeaching> delete(Integer id) {
+        return ResponseHelper.returnResponse(iTeachTeachingService.removeById(id));
     }
 }
 
