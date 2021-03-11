@@ -25,32 +25,68 @@
 <div class="layui-form" lay-filter="layuiadmin-form-useradmin" id="layuiadmin-form-useradmin"
      style="padding: 20px 0 0 0;">
     <div>
+        <input type="hidden" id="id" name="id" th:value="${id}">
+        <div><h4>上半年</h4></div>
         <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>人员账号:</label>
+            <label class="layui-form-label"><span class="required"></span>课堂教学业绩点:</label>
             <div class="layui-input-inline">
-                <input type="text" id="account" name="account" lay-verify="required" autocomplete="off"
+                <input type="text" id="firstTeachPoint" name="firstTeachPoint" lay-verify="required" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>登录密码:</label>
+            <label class="layui-form-label"><span class="required"></span>上半年监考业绩点:</label>
             <div class="layui-input-inline">
-                <input type="password" id="password" name="password" lay-verify="required" autocomplete="off"
+                <input type="text" id="firstInspectPoint" name="firstInspectPoint" lay-verify="required"
+                       autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">姓名:</label>
+            <label class="layui-form-label"><span class="required"></span>上半年实践教学业绩点:</label>
             <div class="layui-input-inline">
-                <input type="text" id="name" name="name" autocomplete="off"
+                <input type="text" id="firstOtherPoint" name="firstOtherPoint" lay-verify="required" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>角色:</label>
+            <label class="layui-form-label"><span class="required"></span>上半年合计业绩点:</label>
             <div class="layui-input-inline">
-                <select id="roleId" name="roleId" lay-filter="required" lay-verify="required">
-                </select>
+                <input type="text" id="firstTotalPoint" name="firstTotalPoint" lay-verify="required" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div><h4>下半年</h4></div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span class="required"></span>下半年课堂教学业绩点:</label>
+            <div class="layui-input-inline">
+                <input type="text" id="secondTeachPoint" name="secondTeachPoint" lay-verify="required"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span class="required"></span>下半年监考业绩点:</label>
+            <div class="layui-input-inline">
+                <input type="text" id="secondInspectPoint" name="secondInspectPoint" lay-verify="required"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span class="required"></span>下半年实践教学业绩点:</label>
+            <div class="layui-input-inline">
+                <input type="text" id="secondOtherPoint" name="secondOtherPoint" lay-verify="required"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span class="required"></span>下半年合计业绩点:</label>
+            <div class="layui-input-inline">
+                <input type="text" id="secongTotalPoint" name="secongTotalPoint" lay-verify="required"
+                       autocomplete="off"
+                       class="layui-input">
             </div>
         </div>
         <div class="layui-form-item" style="margin-top: 100px;margin-left: 150px">
@@ -71,51 +107,25 @@
     }).use(['index', 'form', 'upload', "element"], function () {
         var $ = layui.$;
         var form = layui.form;
-        var upload = layui.upload;
-        $.ajax({
-            type: "get",
-            url: "/role/getRoleList",
-            async: false,
-            success: function (res) {
-                var type = res.data;
-                var html = "<option value=''>请选择</option>";
-                $.each(type, function (k, v) {
-                    html += '<option value="' + v.id + '">' + v.name + '</option>'
-                });
-                $("#roleId").html(html);
-                form.render();
-            }
-        })
-        upload.render({
-            elem: '#uploadPic',
-            url: '/file/uploadFile',
-            before: function (obj) {
-                obj.preview(function (index, file, result) {
-                    $('#majorImg').attr('src', result);
-                });
-            },
-            done: function (res) {
-                if (res.errorCode !== "0000") {
-                    return layer.msg('上传失败');
-                } else {
-                    $("#headPortrait").val(res.data.path);
-                    form.render();
-                }
-            }
-        });
+        var firstTeachPoint = $("#firstTeachPoint").val();
+        var firstInspectPoint = $("#firstInspectPoint").val();
+        var firstOtherPoint = $("#firstOtherPoint").val();
+        var secondTeachPoint = $("#secondTeachPoint").val();
+        var secondInspectPoint = $("#secondInspectPoint").val();
+        var secondOtherPoint = $("#secondOtherPoint").val();
+        if (isRealNum(firstTeachPoint) && isRealNum(firstInspectPoint) && isRealNum(firstOtherPoint) &&
+            isRealNum(secondTeachPoint) && isRealNum(secondInspectPoint) && isRealNum(secondOtherPoint)) {
+            $("#firstTotalPoint").val(firstTeachPoint + firstInspectPoint + firstOtherPoint);
+            $("#secondTotalPoint").val(secondTeachPoint + secondInspectPoint + secondOtherPoint);
+        } else {
+            alert("输入数据格式不正确，请重新输入");
+            return;
+        }
         form.on('submit(subBtn)', function (data) {
             var field = data.field;
-            if ($.trim(field.account).length === 0) {
-                layer.msg("人员账号不能为空");
-                return false;
-            }
-            if (field.password.length < 7 || field.password.length > 12) {
-                layer.msg("密码格式错误，必须输入7-12位");
-                return;
-            }
             $.ajax({
                 type: "post",
-                url: "/manager/save",
+                url: "/teachTeaching/saveOrUpdate",
                 data: field,
                 success: function (res) {
                     if (res.errorCode === "0000") {
@@ -133,6 +143,17 @@
             var index = parent.layer.getFrameIndex(window.name);
             parent.layer.close(index);
         })
+
+        function isRealNum(val) {
+            if (val === "" || val == null) {
+                return false;
+            }
+            if (!isNaN(val)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     })
 </script>
 </body>
