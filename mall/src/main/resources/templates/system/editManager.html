@@ -47,6 +47,13 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label">工号:</label>
+            <div class="layui-input-inline">
+                <input type="text" id="jobNo" name="jobNo" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label"><span class="required"></span>角色:</label>
             <div class="layui-input-inline">
                 <select id="roleId" name="roleId" lay-filter="required" lay-verify="required">
@@ -102,6 +109,7 @@
                         $("#headPortrait").val(data.headPortrait);
                         $("#majorImg").attr("src", data.headPortrait);
                         $("#account").val(data.account);
+                        $("#jobNo").val(data.jobNo);
                         $("#name").val(data.name);
                         $("#phoneNo").val(data.phoneNo);
                         $.ajax({

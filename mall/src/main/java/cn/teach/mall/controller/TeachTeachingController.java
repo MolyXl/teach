@@ -86,7 +86,7 @@ public class TeachTeachingController {
      * @Date: 2021/3/8
      * @Description: 删除
      */
-    @RequestMapping("/get")
+    @RequestMapping("/delete")
     public ResponseEntity<TeachTeaching> delete(Integer id) {
         return ResponseHelper.returnResponse(iTeachTeachingService.removeById(id));
     }

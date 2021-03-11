@@ -34,8 +34,11 @@
         <div class="layui-card-body">
             <table id="userTable" lay-filter="userTable"></table>
             <script type="text/html" id="operation">
+                {{# if(d.status == 0 || d.status == 3){ }}
                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="delete">删除</a>
+                {{# } else { }}
+                {{# } }}
             </script>
         </div>
     </div>
@@ -53,10 +56,10 @@
         var table = layui.table;
         $("#add").click(function () {
             layer.open({
-                title: '添加表单',
+                title: '添加/编辑表单',
                 type: 2,
                 maxmin: true,
-                area: ['40%', '40%'],
+                area: ['50%', '80%'],
                 content: '/modelView/teach/addOrEditTeachTeaching/-1'
             });
         })
@@ -82,11 +85,6 @@
                     },
                     {
                         field: 'firstTeachPoint',
-                        title: '教师姓名',
-                        align: 'center',
-                    },
-                    {
-                        field: 'teacherName',
                         title: '上半年课堂教学业绩点',
                         align: 'center',
                     },
@@ -184,7 +182,7 @@
                     type: 2,
                     maxmin: true,
                     area: ['40%', '40%'],
-                    content: '/modelView/teach/addOrEditTeachTeaching/'+id
+                    content: '/modelView/teach/addOrEditTeachTeaching/' + id
                 });
             } else if (layEvent === 'delete') {
                 $.ajax({

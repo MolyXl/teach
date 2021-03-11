@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : docker-8
+ Source Server         : localhost
  Source Server Type    : MySQL
- Source Server Version : 50647
- Source Host           : localhost:3308
+ Source Server Version : 50642
+ Source Host           : localhost:3306
  Source Schema         : teach
 
  Target Server Type    : MySQL
- Target Server Version : 50647
+ Target Server Version : 50642
  File Encoding         : 65001
 
- Date: 07/03/2021 20:36:22
+ Date: 11/03/2021 22:08:57
 */
 
 SET NAMES utf8mb4;
@@ -22,7 +22,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `foreign_practise`;
 CREATE TABLE `foreign_practise`  (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `job_no` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '工号',
   `teacher_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '教师姓名',
   `position` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '职称',
@@ -50,14 +50,14 @@ CREATE TABLE `foreign_practise`  (
   `audit_time` datetime(0) NULL DEFAULT NULL COMMENT '审核时间',
   `manager_id` int(11) NULL DEFAULT NULL COMMENT '审核人id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '外聘工作量汇总表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '外聘工作量汇总表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for foreign_teach
 -- ----------------------------
 DROP TABLE IF EXISTS `foreign_teach`;
 CREATE TABLE `foreign_teach`  (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `job_no` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '工号',
   `teacher_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '教师姓名',
   `position` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '职称',
@@ -78,14 +78,14 @@ CREATE TABLE `foreign_teach`  (
   `audit_time` datetime(0) NULL DEFAULT NULL COMMENT '审核时间',
   `manager_id` int(11) NULL DEFAULT NULL COMMENT '审核人id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '外聘教师教学工作量统计表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '外聘教师教学工作量统计表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for foreign_work
 -- ----------------------------
 DROP TABLE IF EXISTS `foreign_work`;
 CREATE TABLE `foreign_work`  (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `job_no` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '工号',
   `teacher_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '教师姓名',
   `position` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '职称',
@@ -103,7 +103,7 @@ CREATE TABLE `foreign_work`  (
   `audit_time` datetime(0) NULL DEFAULT NULL COMMENT '审核时间',
   `manager_id` int(11) NULL DEFAULT NULL COMMENT '审核人id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '外聘工作量汇总表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '外聘工作量汇总表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for manager
@@ -114,6 +114,7 @@ CREATE TABLE `manager`  (
   `account` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '账户名称',
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码',
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '姓名',
+  `job_no` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '工号',
   `role_id` int(11) NULL DEFAULT NULL COMMENT '角色id',
   `status` tinyint(1) NULL DEFAULT 0 COMMENT '状态',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
@@ -123,8 +124,8 @@ CREATE TABLE `manager`  (
 -- ----------------------------
 -- Records of manager
 -- ----------------------------
-INSERT INTO `manager` VALUES (1, '111', '7fa8282ad93047a4d6fe6111c93b308a', 'ML', 1, 1, '2019-08-14 15:48:32');
-INSERT INTO `manager` VALUES (5, '11111', '7fa8282ad93047a4d6fe6111c93b308a', 'dfasss', 1, 1, NULL);
+INSERT INTO `manager` VALUES (1, '111', '7fa8282ad93047a4d6fe6111c93b308a', 'ML', '111', 1, 1, '2019-08-14 15:48:32');
+INSERT INTO `manager` VALUES (5, '222', '7fa8282ad93047a4d6fe6111c93b308a', 'dfasss', '222', 2, 1, NULL);
 
 -- ----------------------------
 -- Table structure for menu
@@ -180,7 +181,7 @@ CREATE TABLE `role`  (
 -- Records of role
 -- ----------------------------
 INSERT INTO `role` VALUES (1, '管理员', '管理员', '2021-03-05 15:45:18');
-INSERT INTO `role` VALUES (4, '教师', '教师', '2021-03-05 15:45:07');
+INSERT INTO `role` VALUES (2, '教师', '教师', '2021-03-05 15:45:07');
 
 -- ----------------------------
 -- Table structure for role_menu
@@ -191,7 +192,7 @@ CREATE TABLE `role_menu`  (
   `role_id` int(11) NULL DEFAULT NULL COMMENT '角色id',
   `menu_id` int(11) NULL DEFAULT NULL COMMENT '菜单id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 125 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色_菜单' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 171 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色_菜单' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of role_menu
@@ -215,16 +216,33 @@ INSERT INTO `role_menu` VALUES (82, 1, 82);
 INSERT INTO `role_menu` VALUES (83, 1, 83);
 INSERT INTO `role_menu` VALUES (84, 1, 84);
 INSERT INTO `role_menu` VALUES (85, 1, 85);
+INSERT INTO `role_menu` VALUES (155, 2, 51);
+INSERT INTO `role_menu` VALUES (156, 2, 52);
+INSERT INTO `role_menu` VALUES (157, 2, 53);
+INSERT INTO `role_menu` VALUES (158, 2, 54);
+INSERT INTO `role_menu` VALUES (159, 2, 55);
+INSERT INTO `role_menu` VALUES (160, 2, 81);
+INSERT INTO `role_menu` VALUES (161, 2, 82);
+INSERT INTO `role_menu` VALUES (162, 2, 83);
+INSERT INTO `role_menu` VALUES (163, 2, 84);
+INSERT INTO `role_menu` VALUES (164, 2, 85);
+INSERT INTO `role_menu` VALUES (165, 2, 61);
+INSERT INTO `role_menu` VALUES (166, 2, 62);
+INSERT INTO `role_menu` VALUES (167, 2, 63);
+INSERT INTO `role_menu` VALUES (168, 2, 5);
+INSERT INTO `role_menu` VALUES (169, 2, 6);
+INSERT INTO `role_menu` VALUES (170, 2, 8);
 
 -- ----------------------------
 -- Table structure for teach_course
 -- ----------------------------
 DROP TABLE IF EXISTS `teach_course`;
 CREATE TABLE `teach_course`  (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `job_no` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '工号',
   `teacher_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '教师姓名',
-  `class_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '主要班级',
+  `course_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '课程名称',
+  `class_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '上课班级',
   `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '类别(1,课堂;2,课程实践;3,实验课)',
   `course_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '课程类型(1,理科专业理论课;2,文科专业理论课;3,通识教育必修理论课;4,通识教育必修大学英语课;5,理工类实验课;6,通识教育必修大学体育课;7,音乐技巧课;8,美术技巧课;9,体育技能课;10,通识教育选修课;11,外语专业课)\r\n',
   `special_course` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '特殊课程(1,专科专业;2,双语课程;3,网络在线开放课;4,外语听力课;5,计算机上机课;6,无)',
@@ -246,14 +264,14 @@ CREATE TABLE `teach_course`  (
   `audit_time` datetime(0) NULL DEFAULT NULL COMMENT '审核时间',
   `manager_id` int(11) NULL DEFAULT NULL COMMENT '审核人id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '课堂教学及评卷业绩点统计表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '课堂教学及评卷业绩点统计表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for teach_exam
 -- ----------------------------
 DROP TABLE IF EXISTS `teach_exam`;
 CREATE TABLE `teach_exam`  (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `job_no` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '工号',
   `teacher_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '教师姓名',
   `exam_first_exam_amount` int(4) NULL DEFAULT NULL COMMENT '上半年监考场次',
@@ -271,14 +289,14 @@ CREATE TABLE `teach_exam`  (
   `audit_time` datetime(0) NULL DEFAULT NULL COMMENT '审核时间',
   `manager_id` int(11) NULL DEFAULT NULL COMMENT '审核人id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '监考听课业绩点统计表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '监考听课业绩点统计表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for teach_practise_competition
 -- ----------------------------
 DROP TABLE IF EXISTS `teach_practise_competition`;
 CREATE TABLE `teach_practise_competition`  (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `job_no` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '工号',
   `teacher_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '教师姓名',
   `competition_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '专业学科竞赛名称',
@@ -292,14 +310,14 @@ CREATE TABLE `teach_practise_competition`  (
   `audit_time` datetime(0) NULL DEFAULT NULL COMMENT '审核时间',
   `manager_id` int(11) NULL DEFAULT NULL COMMENT '审核人id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '实践环节专业学科竞赛业绩点统计表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '实践环节专业学科竞赛业绩点统计表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for teach_practise_course
 -- ----------------------------
 DROP TABLE IF EXISTS `teach_practise_course`;
 CREATE TABLE `teach_practise_course`  (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `job_no` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '工号',
   `teacher_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '教师姓名',
   `course_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '课程设计/项目课程名称',
@@ -316,14 +334,14 @@ CREATE TABLE `teach_practise_course`  (
   `audit_time` datetime(0) NULL DEFAULT NULL COMMENT '审核时间',
   `manager_id` int(11) NULL DEFAULT NULL COMMENT '审核人id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '实践环节课程设计/项目课程等业绩点统计表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '实践环节课程设计/项目课程等业绩点统计表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for teach_practise_inspect
 -- ----------------------------
 DROP TABLE IF EXISTS `teach_practise_inspect`;
 CREATE TABLE `teach_practise_inspect`  (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `job_no` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '工号',
   `teacher_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '教师姓名',
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '实习/见习/考察等名称(1,教育实习;2,专业实习;3,教育见习;4,专业见习;5,考察;6,写生)',
@@ -339,14 +357,14 @@ CREATE TABLE `teach_practise_inspect`  (
   `audit_time` datetime(0) NULL DEFAULT NULL COMMENT '审核时间',
   `manager_id` int(11) NULL DEFAULT NULL COMMENT '审核人id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '实践环节专业学科竞赛业绩点统计表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '实践环节专业学科竞赛业绩点统计表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for teach_practise_other
 -- ----------------------------
 DROP TABLE IF EXISTS `teach_practise_other`;
 CREATE TABLE `teach_practise_other`  (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `job_no` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '工号',
   `teacher_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '教师姓名',
   `first_graduation_point` decimal(10, 2) NULL DEFAULT NULL COMMENT '上半年指导毕业论文业绩点',
@@ -367,14 +385,14 @@ CREATE TABLE `teach_practise_other`  (
   `audit_time` datetime(0) NULL DEFAULT NULL COMMENT '审核时间',
   `manager_id` int(11) NULL DEFAULT NULL COMMENT '审核人id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '实践环节专业学科竞赛业绩点统计表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '实践环节专业学科竞赛业绩点统计表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for teach_practise_paper
 -- ----------------------------
 DROP TABLE IF EXISTS `teach_practise_paper`;
 CREATE TABLE `teach_practise_paper`  (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `job_no` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '工号',
   `teacher_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '教师姓名',
   `link_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '环节类型(1,指导创新创业训练;2,指导毕业论文;3,指导学年论文)',
@@ -393,14 +411,14 @@ CREATE TABLE `teach_practise_paper`  (
   `audit_time` datetime(0) NULL DEFAULT NULL COMMENT '审核时间',
   `manager_id` int(11) NULL DEFAULT NULL COMMENT '审核人id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '实践环节毕业论文、学年论文、创新创业训练计划项目等业绩点统计表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '实践环节毕业论文、学年论文、创新创业训练计划项目等业绩点统计表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for teach_revolution
 -- ----------------------------
 DROP TABLE IF EXISTS `teach_revolution`;
 CREATE TABLE `teach_revolution`  (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '类型(1,教学改革项目类;2,新专业申报建设;3,安师讲坛;4,政治理论报告;5,教研成果类)',
   `course` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '本科教学工程类别(1,专业综合改革试点;2,人才培养模式改革试点;3,卓越计划项目;4,专业核心课程示范群;5,精品资源共享课;7精品视频公开课;8,双语教学示范课\r\n教学团队;9,大学生校外实践基地;10,实验教学示范中心;11,精品在线开放课程;12,基层教学组织;13,特色专业\r\n教学研究项目;14,教学成果奖;15,虚拟仿真实验教学中心;16,无)',
   `level` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '级别(1,国家级;2,省级;3,地厅级;4,校级)',
@@ -419,14 +437,14 @@ CREATE TABLE `teach_revolution`  (
   `audit_time` datetime(0) NULL DEFAULT NULL COMMENT '审核时间',
   `manager_id` int(11) NULL DEFAULT NULL COMMENT '审核人id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '教学改革增量业绩点统计表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '教学改革增量业绩点统计表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for teach_teaching
 -- ----------------------------
 DROP TABLE IF EXISTS `teach_teaching`;
 CREATE TABLE `teach_teaching`  (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `job_no` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '工号',
   `teacher_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '教师姓名',
   `first_teach_point` decimal(10, 2) NULL DEFAULT NULL COMMENT '上半年课堂教学业绩点',
@@ -444,6 +462,12 @@ CREATE TABLE `teach_teaching`  (
   `audit_time` datetime(0) NULL DEFAULT NULL COMMENT '审核时间',
   `manager_id` int(11) NULL DEFAULT NULL COMMENT '审核人id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '教师教学工作量汇总表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '教师教学工作量汇总表' ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of teach_teaching
+-- ----------------------------
+INSERT INTO `teach_teaching` VALUES (1, '111', 'ML', 1.00, 2.00, 3.00, 6.00, 1.00, 34.00, 2.00, 37.00, 1, 0, '2021-03-11 22:01:55', NULL, NULL, NULL);
+INSERT INTO `teach_teaching` VALUES (2, '222', 'dfasss', 11.00, 1.00, 1.00, NULL, 1.00, 1.00, 1.00, NULL, 5, 0, '2021-03-11 22:07:02', NULL, NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

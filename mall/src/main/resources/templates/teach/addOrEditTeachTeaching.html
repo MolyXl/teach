@@ -16,7 +16,7 @@
         float: left;
         display: block;
         padding: 9px 15px;
-        width: 120px;
+        width: 220px;
         font-weight: 400;
         line-height: 20px;
         text-align: right
@@ -50,9 +50,9 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>上半年合计业绩点:</label>
+            <label class="layui-form-label">上半年合计业绩点:</label>
             <div class="layui-input-inline">
-                <input type="text" id="firstTotalPoint" name="firstTotalPoint" lay-verify="required" autocomplete="off"
+                <input type="text" id="firstTotalPoint" name="firstTotalPoint" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
@@ -82,16 +82,26 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>下半年合计业绩点:</label>
+            <label class="layui-form-label">下半年合计业绩点:</label>
             <div class="layui-input-inline">
-                <input type="text" id="secongTotalPoint" name="secongTotalPoint" lay-verify="required"
+                <input type="text" id="secondTotalPoint" name="secongTotalPoint"
                        autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item" style="margin-top: 100px;margin-left: 150px">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="subBtn" style="margin-left: 50px">保存</button>
+                <button class="layui-btn" lay-submit lay-filter="subBtn" id="submitBtn" style="margin-left: 50px">保存
+                </button>
+                <button class="layui-btn" lay-submit lay-filter="commitBtn" id="commitBtn" style="margin-left: 50px">
+                    提交
+                </button>
+                <button class="layui-btn" lay-submit lay-filter="approveBtn" id="approveBtn" style="margin-left: 50px">
+                    审核通过
+                </button>
+                <button class="layui-btn" lay-submit lay-filter="refuseBtn" id="refuseBtn" style="margin-left: 50px">
+                    审核拒绝
+                </button>
                 <button class="layui-btn" id="cancelBtn" style="margin-left: 50px">取消</button>
             </div>
         </div>
@@ -107,21 +117,57 @@
     }).use(['index', 'form', 'upload', "element"], function () {
         var $ = layui.$;
         var form = layui.form;
-        var firstTeachPoint = $("#firstTeachPoint").val();
-        var firstInspectPoint = $("#firstInspectPoint").val();
-        var firstOtherPoint = $("#firstOtherPoint").val();
-        var secondTeachPoint = $("#secondTeachPoint").val();
-        var secondInspectPoint = $("#secondInspectPoint").val();
-        var secondOtherPoint = $("#secondOtherPoint").val();
-        if (isRealNum(firstTeachPoint) && isRealNum(firstInspectPoint) && isRealNum(firstOtherPoint) &&
-            isRealNum(secondTeachPoint) && isRealNum(secondInspectPoint) && isRealNum(secondOtherPoint)) {
-            $("#firstTotalPoint").val(firstTeachPoint + firstInspectPoint + firstOtherPoint);
-            $("#secondTotalPoint").val(secondTeachPoint + secondInspectPoint + secondOtherPoint);
+        var storage = window.localStorage;
+        var manager = JSON.parse(storage.getItem("manager"));
+        if (manager === null) {
+            var storage = window.localStorage;
+            storage.clear();
+            location.href = '/';
+        }
+
+        if (manager.roleId != 1) {
+            $("#approveBtn").hide();
+            $("#refuseBtn").hide();
         } else {
-            alert("输入数据格式不正确，请重新输入");
-            return;
+            $("#submitBtn").hide();
+            $("#commitBtn").hide();
         }
         form.on('submit(subBtn)', function (data) {
+            saveOrUpdate(data);
+        });
+        form.on('submit(commitBtn)', function (data) {
+            $("#status").val(1);
+            saveOrUpdate(data);
+        });
+        form.on('submit(approveBtn)', function (data) {
+            $("#status").val(2);
+            saveOrUpdate(data);
+        });
+        form.on('submit(refuseBtn)', function (data) {
+            $("#status").val(3);
+            saveOrUpdate(data);
+        });
+
+        $("#cancelBtn").click(function () {
+            var index = parent.layer.getFrameIndex(window.name);
+            parent.layer.close(index);
+        })
+
+        function saveOrUpdate(data) {
+            var firstTeachPoint = $("#firstTeachPoint").val();
+            var firstInspectPoint = $("#firstInspectPoint").val();
+            var firstOtherPoint = $("#firstOtherPoint").val();
+            var secondTeachPoint = $("#secondTeachPoint").val();
+            var secondInspectPoint = $("#secondInspectPoint").val();
+            var secondOtherPoint = $("#secondOtherPoint").val();
+            if (isRealNum(firstTeachPoint) && isRealNum(firstInspectPoint) && isRealNum(firstOtherPoint) &&
+                isRealNum(secondTeachPoint) && isRealNum(secondInspectPoint) && isRealNum(secondOtherPoint)) {
+                $("#firstTotalPoint").val(Number(firstTeachPoint) + Number(firstInspectPoint) + Number(firstOtherPoint));
+                $("#secondTotalPoint").val(Number(secondTeachPoint) + Number(secondInspectPoint) + Number(secondOtherPoint));
+            } else {
+                alert("输入数据格式不正确，请重新输入");
+                return;
+            }
             var field = data.field;
             $.ajax({
                 type: "post",
@@ -138,11 +184,7 @@
                     }
                 }
             })
-        });
-        $("#cancelBtn").click(function () {
-            var index = parent.layer.getFrameIndex(window.name);
-            parent.layer.close(index);
-        })
+        }
 
         function isRealNum(val) {
             if (val === "" || val == null) {
