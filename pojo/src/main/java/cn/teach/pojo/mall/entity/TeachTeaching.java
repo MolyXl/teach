@@ -1,7 +1,13 @@
 package cn.teach.pojo.mall.entity;
 
 import java.math.BigDecimal;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -17,7 +23,7 @@ import java.io.Serializable;
 public class TeachTeaching implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
@@ -83,16 +89,22 @@ public class TeachTeaching implements Serializable {
     /**
      * 创建时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date createTime;
 
     /**
      * 提交时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date commitTime;
 
     /**
      * 审核时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date auditTime;
 
     /**
@@ -240,23 +252,23 @@ public class TeachTeaching implements Serializable {
     @Override
     public String toString() {
         return "TeachTeaching{" +
-        "id=" + id +
-        ", jobNo=" + jobNo +
-        ", teacherName=" + teacherName +
-        ", firstTeachPoint=" + firstTeachPoint +
-        ", firstInspectPoint=" + firstInspectPoint +
-        ", firstOtherPoint=" + firstOtherPoint +
-        ", firstTotalPoint=" + firstTotalPoint +
-        ", secondTeachPoint=" + secondTeachPoint +
-        ", secondInspectPoint=" + secondInspectPoint +
-        ", secondOtherPoint=" + secondOtherPoint +
-        ", secongTotalPoint=" + secongTotalPoint +
-        ", teacherId=" + teacherId +
-        ", status=" + status +
-        ", createTime=" + createTime +
-        ", commitTime=" + commitTime +
-        ", auditTime=" + auditTime +
-        ", managerId=" + managerId +
-        "}";
+                "id=" + id +
+                ", jobNo=" + jobNo +
+                ", teacherName=" + teacherName +
+                ", firstTeachPoint=" + firstTeachPoint +
+                ", firstInspectPoint=" + firstInspectPoint +
+                ", firstOtherPoint=" + firstOtherPoint +
+                ", firstTotalPoint=" + firstTotalPoint +
+                ", secondTeachPoint=" + secondTeachPoint +
+                ", secondInspectPoint=" + secondInspectPoint +
+                ", secondOtherPoint=" + secondOtherPoint +
+                ", secongTotalPoint=" + secongTotalPoint +
+                ", teacherId=" + teacherId +
+                ", status=" + status +
+                ", createTime=" + createTime +
+                ", commitTime=" + commitTime +
+                ", auditTime=" + auditTime +
+                ", managerId=" + managerId +
+                "}";
     }
 }

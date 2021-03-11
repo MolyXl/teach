@@ -1,7 +1,13 @@
 package cn.teach.pojo.mall.entity;
 
 import java.math.BigDecimal;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -17,7 +23,7 @@ import java.io.Serializable;
 public class TeachCourse implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
@@ -126,16 +132,22 @@ public class TeachCourse implements Serializable {
     /**
      * 创建时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date createTime;
 
     /**
      * 提交时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date commitTime;
 
     /**
      * 审核时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date auditTime;
 
     /**
