@@ -1,7 +1,11 @@
 package cn.teach.mall.mapper;
 
+import cn.teach.common.mvc.Page;
 import cn.teach.pojo.mall.entity.TeachRevolution;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -13,4 +17,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface TeachRevolutionMapper extends BaseMapper<TeachRevolution> {
 
+    IPage<TeachRevolution> pageForTeachRevolution(Page<TeachRevolution> page, Map<String, Object> param);
 }

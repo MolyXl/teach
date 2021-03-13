@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title>课堂教学及评卷业绩点统计表</title>
+    <title>监考听课业绩点统计表</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -10,11 +10,6 @@
     <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}" media="all">
     <link rel="stylesheet" th:href="@{/static/style/admin.css}" media="all">
 </head>
-<style>
-    .layui-table-fixed{
-        z-index: 999;
-    }
-</style>
 <body>
 
 <div class="layui-fluid">
@@ -62,15 +57,14 @@
                 type: 2,
                 maxmin: true,
                 area: ['70%', '60%'],
-                content: '/modelView/teach/addOrEditTeachCourse/0'
+                content: '/modelView/teach/addOrEditteachExam/0'
             });
         })
         var tableIns = table.render({
             elem: '#userTable',
-            width: $(window).width()*0.96,
             height: "full-200",
             cellMinWidth: 80,
-            url: '/teachCourse/page',
+            url: '/teachExam/page',
             where: {},
             page: true,
             limits: [10, 20, 30, 40, 50],
@@ -87,89 +81,47 @@
                         align: 'center',
                     },
                     {
-                        field: 'courseName',
-                        title: '课程名称',
+                        field: 'examFirstExamAmount',
+                        title: '上半年监考场次',
                         align: 'center',
                     },
                     {
-                        field: 'className',
-                        title: '上课班级',
+                        field: 'examFirstInspectPoint',
+                        title: '上半年监考业绩点',
                         align: 'center',
                     },
                     {
-                        field: 'type',
-                        title: '类别',
+                        field: 'examSecondExamAmount',
+                        title: '下半年监考场次',
                         align: 'center',
                     },
                     {
-                        field: 'courseType',
-                        title: '课程类型',
+                        field: 'examSecondInspectPoint',
+                        title: '下半年监考业绩点',
                         align: 'center',
                     },
                     {
-                        field: 'specialCourse',
-                        title: '特殊课程',
+                        field: 'listenFirstListenAmount',
+                        title: '上半年听课场次',
                         align: 'center',
                     },
                     {
-                        field: 'weekHour',
-                        title: '周学时数',
+                        field: 'listenFirstListenPoint',
+                        title: '上半年听课业绩点',
                         align: 'center',
                     },
                     {
-                        field: 'weeks',
-                        title: '上课周数',
+                        field: 'listenSecondListenAmount',
+                        title: '下半年听课场次',
                         align: 'center',
                     },
                     {
-                        field: 'originalClassHour',
-                        title: '原始总课时数',
+                        field: 'listenSecondListenPoint',
+                        title: '下半年听课业绩点',
                         align: 'center',
                     },
                     {
-                        field: 'studentAmount',
-                        title: '选课学生人数',
-                        align: 'center',
-                    },
-                    {
-                        field: 'classCoefficient',
-                        title: '分班系数',
-                        align: 'center',
-                    },
-                    {
-                        field: 'courseCoefficient',
-                        title: '课程系数',
-                        align: 'center',
-                    },
-                    {
-                        field: 'teachResultCoefficient',
-                        title: '教学结果系数',
-                        align: 'center',
-                    },
-                    {
-                        field: 'courseTeachPoing',
-                        title: '课堂教学业绩点',
-                        align: 'center',
-                    },
-                    {
-                        field: 'inspectType',
-                        title: '考核类型',
-                        align: 'center',
-                    },
-                    {
-                        field: 'inspectTypeCoefficient',
-                        title: '考核类型系数',
-                        align: 'center',
-                    },
-                    {
-                        field: 'markExamPoint',
-                        title: '评卷业绩点',
-                        align: 'center',
-                    },
-                    {
-                        fixed: 'right',
                         title: '操作',
-                        width: 200,
                         align: 'center',
                         toolbar: '#operation'
                     },
@@ -195,7 +147,7 @@
         function save(data) {
             $.ajax({
                 type: "post",
-                url: "/teachCourse/saveOrUpdate",
+                url: "/teachExam/saveOrUpdate",
                 async: false,
                 data: data,
                 success: function (res) {
@@ -220,13 +172,13 @@
                     title: '编辑表单',
                     type: 2,
                     maxmin: true,
-                    area: ['40%', '40%'],
-                    content: "/modelView/teach/addOrEditTeachCourse/" + id
+                    area: ['70%', '60%'],
+                    content: "/modelView/teach/addOrEditteachExam/" + id
                 });
             } else if (layEvent === 'delete') {
                 $.ajax({
                     type: "get",
-                    url: "/teachCourse/delete",
+                    url: "/teachExam/delete",
                     data: {"id": id},
                     success: function (res) {
                         if (res.errorCode != "0000") {

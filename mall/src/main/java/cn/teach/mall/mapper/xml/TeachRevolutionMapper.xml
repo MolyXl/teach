@@ -28,5 +28,7 @@
     <sql id="Base_Column_List">
         id, type, course, level, project_name, approval_date, build_period, year_finish_status, project_build_status, charge_man, year_point, project_point, teacher_id, status, create_time, commit_time, audit_time, manager_id
     </sql>
-
+    <select id="pageForTeachRevolution" resultType="cn.teach.pojo.mall.entity.TeachRevolution">
+        select * from teach_revolution order by create_time desc
+    </select>
 </mapper>

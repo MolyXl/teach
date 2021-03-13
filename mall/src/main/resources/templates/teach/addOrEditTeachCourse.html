@@ -26,11 +26,12 @@
      style="padding: 20px 0 0 0;">
     <div>
         <input type="hidden" id="id" name="id" th:value="${id}">
+        <input type="hidden" id="status" name="status"/>
         <div class="layui-form-item">
             <label class="layui-form-label"><span class="required"></span>课程名称:</label>
             <div class="layui-input-inline">
                 <input type="text" id="courseName" name="courseName" lay-verify="required" autocomplete="off"
-                       class="layui-input">
+                       class="layui-input" placeholder="请输入">
             </div>
         </div>
         <div class="layui-form-item">
@@ -38,7 +39,7 @@
             <div class="layui-input-inline">
                 <input type="text" id="className" name="className" lay-verify="required"
                        autocomplete="off"
-                       class="layui-input">
+                       class="layui-input" placeholder="请输入">
             </div>
         </div>
         <div class="layui-form-item">
@@ -96,7 +97,7 @@
             <div class="layui-input-inline">
                 <input type="number" id="weekHour" name="weekHour" lay-verify="required"
                        autocomplete="off"
-                       class="layui-input">
+                       class="layui-input" placeholder="请输入">
             </div>
         </div>
         <div class="layui-form-item">
@@ -104,7 +105,7 @@
             <div class="layui-input-inline">
                 <input type="number" id="weeks" name="weeks" lay-verify="required"
                        autocomplete="off"
-                       class="layui-input">
+                       class="layui-input" placeholder="请输入">
             </div>
         </div>
         <div class="layui-form-item">
@@ -112,7 +113,7 @@
             <div class="layui-input-inline">
                 <input type="number" id="originalClassHour" name="originalClassHour"
                        autocomplete="off"
-                       class="layui-input" lay-verify="required">
+                       class="layui-input" lay-verify="required" placeholder="请输入">
             </div>
         </div>
         <div class="layui-form-item">
@@ -120,7 +121,7 @@
             <div class="layui-input-inline">
                 <input type="number" id="studentAmount" name="studentAmount"
                        autocomplete="off"
-                       class="layui-input" lay-verify="required">
+                       class="layui-input" lay-verify="required" placeholder="请输入">
             </div>
         </div>
         <div class="layui-form-item">
@@ -128,7 +129,7 @@
             <div class="layui-input-inline">
                 <input type="text" id="classCoefficient" name="classCoefficient"
                        autocomplete="off"
-                       class="layui-input" lay-verify="required">
+                       class="layui-input" lay-verify="required" placeholder="请输入">
             </div>
         </div>
         <div class="layui-form-item">
@@ -136,7 +137,7 @@
             <div class="layui-input-inline">
                 <input type="text" id="courseCoefficient" name="courseCoefficient"
                        autocomplete="off"
-                       class="layui-input" lay-verify="required">
+                       class="layui-input" lay-verify="required" placeholder="请输入">
             </div>
         </div>
         <div class="layui-form-item">
@@ -150,16 +151,17 @@
                 </select>
             </div>
         </div>
+<!--        <div class="layui-form-item">-->
+<!--            <label class="layui-form-label">课堂教学业绩点:</label>-->
+<!--            <div class="layui-input-inline">-->
+<!--                <input type="text" id="courseTeachPoing" name="courseTeachPoing"-->
+<!--                       autocomplete="off"-->
+<!--                       class="layui-input" readonly="readonly">-->
+<!--            </div>-->
+<!--        </div>-->
+        <input type="hidden" id="courseTeachPoing" name="courseTeachPoing"/>
         <div class="layui-form-item">
-            <label class="layui-form-label">课堂教学业绩点:</label>
-            <div class="layui-input-inline">
-                <input type="text" id="courseTeachPoing" name="courseTeachPoing"
-                       autocomplete="off"
-                       class="layui-input" readonly="readonly">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required">考核类型:</label>
+            <label class="layui-form-label"><span class="required"/>考核类型:</label>
             <div class="layui-input-inline">
 <!--                考核类型(1,考试;2,考查;3,无)-->
                 <select name="inspectType" lay-verify="required" id="inspectType" class="layui-input" autocomplete="off">
@@ -182,14 +184,15 @@
                 </select>
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">评卷业绩点:</label>
-            <div class="layui-input-inline">
-                <input type="text" id="markExamPoint" name="markExamPoint"
-                       autocomplete="off"
-                       class="layui-input" readonly="readonly">
-            </div>
-        </div>
+<!--        <div class="layui-form-item">-->
+<!--            <label class="layui-form-label">评卷业绩点:</label>-->
+<!--            <div class="layui-input-inline">-->
+<!--                <input type="text" id="markExamPoint" name="markExamPoint"-->
+<!--                       autocomplete="off"-->
+<!--                       class="layui-input" readonly="readonly">-->
+<!--            </div>-->
+<!--        </div>-->
+        <input type="hidden" id="markExamPoint" name="markExamPoint"/>
         <div class="layui-form-item" style="margin-top: 100px;margin-left: 150px">
             <div class="layui-input-block">
                 <button class="layui-btn" lay-submit lay-filter="subBtn" id="submitBtn" style="margin-left: 50px">保存
@@ -237,18 +240,19 @@
             $("#commitBtn").hide();
         }
         form.on('submit(subBtn)', function (data) {
+            data.field.status = 0;
             saveOrUpdate(data);
         });
         form.on('submit(commitBtn)', function (data) {
-            $("#status").val(1);
+            data.field.status = 1;
             saveOrUpdate(data);
         });
         form.on('submit(approveBtn)', function (data) {
-            $("#status").val(2);
+            data.field.status = 2;
             saveOrUpdate(data);
         });
         form.on('submit(refuseBtn)', function (data) {
-            $("#status").val(3);
+            data.field.status = 3;
             saveOrUpdate(data);
         });
 
@@ -304,7 +308,7 @@
                 // $("#markExamPoint").html(0.04 * Number(studentAmount) + Number(inspectTypeCoefficient));
                 data.field.markExamPoint = 0.04 * Number(studentAmount) + Number(inspectTypeCoefficient);
             } else {
-                alert("输入数据格式不正确，请重新输入");
+                layer.alert("输入数据格式不正确，请重新输入");
                 return;
             }
             var field = data.field;
@@ -317,7 +321,7 @@
                         window.parent.location.reload();
                         var index = parent.layer.getFrameIndex(window.name);
                         parent.layer.close(index);
-                        parent.layer.msg("添加成功");
+                        parent.layer.msg("保存成功");
                     } else {
                         layer.msg(res.errorMsg);
                     }

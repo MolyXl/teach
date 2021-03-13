@@ -1,10 +1,14 @@
 package cn.teach.mall.service.impl;
 
+import cn.teach.common.mvc.Page;
 import cn.teach.mall.mapper.TeachRevolutionMapper;
 import cn.teach.mall.service.ITeachRevolutionService;
 import cn.teach.pojo.mall.entity.TeachRevolution;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -17,4 +21,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class TeachRevolutionServiceImpl extends ServiceImpl<TeachRevolutionMapper, TeachRevolution> implements ITeachRevolutionService {
 
+    @Override
+    public IPage<TeachRevolution> pageForTeachRevolution(Page<TeachRevolution> page, Map<String, Object> param) {
+        return this.baseMapper.pageForTeachRevolution(page,param);
+    }
 }

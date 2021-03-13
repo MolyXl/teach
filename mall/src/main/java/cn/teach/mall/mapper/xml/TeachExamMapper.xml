@@ -27,5 +27,7 @@
     <sql id="Base_Column_List">
         id, job_no, teacher_name, exam_first_exam_amount, exam_first_inspect_point, exam_second_exam_amount, exam_second_inspect_point, listen_first_listen_amount, listen_first_listen_point, listen_second_listen_amount, listen_second_listen_point, teacher_id, status, create_time, commit_time, audit_time, manager_id
     </sql>
-
+    <select id="pageForTeachExam" resultType="cn.teach.pojo.mall.entity.TeachExam">
+        select * from teach_exam order by create_time desc
+    </select>
 </mapper>
