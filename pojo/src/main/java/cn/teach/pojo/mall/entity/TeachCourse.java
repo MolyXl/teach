@@ -189,14 +189,6 @@ public class TeachCourse implements Serializable {
         this.className = className;
     }
 
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
-    }
-
     public String getType() {
         return type;
     }

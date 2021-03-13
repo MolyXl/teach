@@ -57,7 +57,7 @@
                 type: 2,
                 maxmin: true,
                 area: ['40%', '40%'],
-                content: '/modelView/system/addOrEditTeachTeaching'
+                content: '/modelView/teach/addOrEditTeachCourse/0'
             });
         })
         var tableIns = table.render({
@@ -208,7 +208,13 @@
             var id = data.id;
             var layEvent = obj.event;
             if (layEvent === 'edit') {
-                edit("/modelView/system/editRole/" + id, "编辑表单", "40%", "40%", true, table, save);
+                layer.open({
+                    title: '编辑表单',
+                    type: 2,
+                    maxmin: true,
+                    area: ['40%', '40%'],
+                    content: "/modelView/teach/addOrEditTeachCourse/" + id
+                });
             } else if (layEvent === 'delete') {
                 $.ajax({
                     type: "get",

@@ -60,7 +60,7 @@ public class TeachCourseController {
      */
     @RequestMapping("/saveOrUpdate")
     public ResponseEntity saveOrUpdate(TeachCourse teachCourse, HttpSession session) {
-        if (teachCourse.getId() != null) {
+        if (teachCourse.getId() != null && teachCourse.getId() > 0) {
             if (teachCourse.getStatus() == 1) {
                 teachCourse.setCommitTime(new Date());
             } else if (teachCourse.getStatus() == 2 || teachCourse.getStatus() == 3) {
