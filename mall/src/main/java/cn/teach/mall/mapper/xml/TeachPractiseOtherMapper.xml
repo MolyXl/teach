@@ -30,5 +30,7 @@
     <sql id="Base_Column_List">
         id, job_no, teacher_name, first_graduation_point, first_year_point, first_revolution_point, first_course_point, first_practise_point, second_graduation_point, second_year_point, second_revolution_point, second_course_point, second_practise_point, total_point, teacher_id, status, create_time, commit_time, audit_time, manager_id
     </sql>
-
+    <select id="pageForTeachPractiseOther" resultType="cn.teach.pojo.mall.entity.TeachPractiseOther">
+        select * from teach_practise_other order by create_time desc
+    </select>
 </mapper>

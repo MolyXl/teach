@@ -25,5 +25,7 @@
     <sql id="Base_Column_List">
         id, job_no, teacher_name, name, score, class_name, student, coefficient, point, teacher_id, status, create_time, commit_time, audit_time, manager_id
     </sql>
-
+    <select id="pageForTeachPractiseInspect" resultType="cn.teach.pojo.mall.entity.TeachPractiseInspect">
+        select * from teach_practise_inspect order by create_time desc
+    </select>
 </mapper>
