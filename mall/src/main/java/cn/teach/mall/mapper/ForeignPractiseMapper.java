@@ -1,7 +1,11 @@
 package cn.teach.mall.mapper;
 
+import cn.teach.common.mvc.Page;
 import cn.teach.pojo.mall.entity.ForeignPractise;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -13,4 +17,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface ForeignPractiseMapper extends BaseMapper<ForeignPractise> {
 
+    IPage<ForeignPractise> pageForForeignPractise(Page<ForeignPractise> page, Map<String, Object> param);
 }

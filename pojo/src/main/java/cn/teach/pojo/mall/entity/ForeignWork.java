@@ -271,4 +271,9 @@ public class ForeignWork implements Serializable {
         ", managerId=" + managerId +
         "}";
     }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
 }

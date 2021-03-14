@@ -213,4 +213,5 @@ public class TeachPractiseCompetition implements Serializable {
         ", managerId=" + managerId +
         "}";
     }
+
 }

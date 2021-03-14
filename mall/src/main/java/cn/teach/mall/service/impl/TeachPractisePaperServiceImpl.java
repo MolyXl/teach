@@ -1,10 +1,14 @@
 package cn.teach.mall.service.impl;
 
+import cn.teach.common.mvc.Page;
 import cn.teach.mall.mapper.TeachPractisePaperMapper;
 import cn.teach.mall.service.ITeachPractisePaperService;
 import cn.teach.pojo.mall.entity.TeachPractisePaper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -17,4 +21,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class TeachPractisePaperServiceImpl extends ServiceImpl<TeachPractisePaperMapper, TeachPractisePaper> implements ITeachPractisePaperService {
 
+    @Override
+    public IPage<TeachPractisePaper> pageForTeachPractisePaper(Page<TeachPractisePaper> page, Map<String, Object> param) {
+        return this.baseMapper.pageForTeachPractisePaper(page,param);
+    }
 }

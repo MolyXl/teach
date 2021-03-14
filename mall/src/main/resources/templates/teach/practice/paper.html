@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title>教师教学工作量汇总表</title>
+    <title>毕业论文、学年论文、创新创业训练计划项目业绩点</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -10,6 +10,11 @@
     <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}" media="all">
     <link rel="stylesheet" th:href="@{/static/style/admin.css}" media="all">
 </head>
+<style>
+    .layui-table-fixed{
+        z-index: 999;
+    }
+</style>
 <body>
 
 <div class="layui-fluid">
@@ -23,9 +28,9 @@
                     </div>
                 </div>-->
                 <div class="layui-inline">
-                    <button class="layui-btn layuiadmin-btn-admin" lay-submit lay-filter="search" id="search">
+                    <!--<button class="layui-btn layuiadmin-btn-admin" lay-submit lay-filter="search" id="search">
                         <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
-                    </button>
+                    </button>-->
                     <button class="layui-btn layuiadmin-btn-admin" id="add">添加</button>
                 </div>
             </div>
@@ -36,6 +41,17 @@
             <script type="text/html" id="operation">
                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="delete">删除</a>
+            </script>
+            <script type="text/html" id="statusStr">
+                {{# if(d.status == 0){ }}
+                待提交
+                {{# } else if(d.status == 1) { }}
+                待审核
+                {{# } else if(d.status == 2) { }}
+                审核通过
+                {{# } else { }}
+                审核拒绝
+                {{# } }}
             </script>
         </div>
     </div>
@@ -53,18 +69,18 @@
         var table = layui.table;
         $("#add").click(function () {
             layer.open({
-                title: '添加角色',
+                title: '添加表单',
                 type: 2,
                 maxmin: true,
-                area: ['40%', '40%'],
-                content: '/modelView/system/addRole'
+                area: ['80%', '60%'],
+                content: '/modelView/teach/practice/addOrEditTeachPractisePaper/0'
             });
         })
         var tableIns = table.render({
             elem: '#userTable',
             height: "full-200",
             cellMinWidth: 80,
-            url: '/teachTeaching/page',
+            url: '/teachPractisePaper/page',
             where: {},
             page: true,
             limits: [10, 20, 30, 40, 50],
@@ -81,54 +97,54 @@
                         align: 'center',
                     },
                     {
-                        field: 'firstTeachPoint',
-                        title: '教师姓名',
+                        field: 'linkType',
+                        title: '环节类型',
                         align: 'center',
                     },
                     {
-                        field: 'teacherName',
-                        title: '上半年课堂教学业绩点',
+                        field: 'className',
+                        title: '学生对象（班级名称）',
                         align: 'center',
                     },
                     {
-                        field: 'firstInspectPoint',
-                        title: '上半年监考业绩点',
+                        field: 'studentAmount',
+                        title: '指导毕业论文人数',
                         align: 'center',
                     },
                     {
-                        field: 'firstOtherPoint',
-                        title: '上半年实践教学业绩点',
+                        field: 'designType',
+                        title: '毕业设计类型',
                         align: 'center',
                     },
                     {
-                        field: 'firstTotalPoint',
-                        title: '上半年合计业绩点',
+                        field: 'paperPoint',
+                        title: '指导毕业论文业绩点',
                         align: 'center',
                     },
                     {
-                        field: 'secondTeachPoint',
-                        title: '下半年课堂教学业绩点',
+                        field: 'paperStudentAmount',
+                        title: '指导学年论文人数',
                         align: 'center',
                     },
                     {
-                        field: 'secondInspectPoint',
-                        title: '下半年监考业绩点',
+                        field: 'totalPaperAmount',
+                        title: '指导学年论文业绩点',
                         align: 'center',
                     },
                     {
-                        field: 'secondOtherPoint',
-                        title: '下半年实践教学业绩点',
+                        field: 'innovativeLevel',
+                        title: '指导创新创业训练级别',
                         align: 'center',
                     },
                     {
-                        field: 'secongTotalPoint',
-                        title: '下半年合计业绩点',
+                        field: 'innovativePoint',
+                        title: '指导创新创业训练业绩点',
                         align: 'center',
                     },
                     {
-                        field: 'status',
                         title: '状态',
                         align: 'center',
+                        toolbar: '#statusStr'
                     },
                     {
                         title: '操作',
@@ -157,7 +173,7 @@
         function save(data) {
             $.ajax({
                 type: "post",
-                url: "/teachTeaching/saveOrUpdate",
+                url: "/teachPractisePaper/saveOrUpdate",
                 async: false,
                 data: data,
                 success: function (res) {
@@ -178,11 +194,17 @@
             var id = data.id;
             var layEvent = obj.event;
             if (layEvent === 'edit') {
-                edit("/modelView/system/editRole/" + id, "编辑表单", "40%", "40%", true, table, save);
+                layer.open({
+                    title: '编辑表单',
+                    type: 2,
+                    maxmin: true,
+                    area: ['80%', '60%'],
+                    content: "/modelView/teach/practice/addOrEditTeachPractisePaper/" + id
+                });
             } else if (layEvent === 'delete') {
                 $.ajax({
                     type: "get",
-                    url: "/teachTeaching/delete",
+                    url: "/teachPractisePaper/delete",
                     data: {"id": id},
                     success: function (res) {
                         if (res.errorCode != "0000") {

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title>教学改革增量业绩点统计表</title>
+    <title>外聘课程实践工作量统计表</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -10,6 +10,11 @@
     <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}" media="all">
     <link rel="stylesheet" th:href="@{/static/style/admin.css}" media="all">
 </head>
+<style>
+    .layui-table-fixed{
+        z-index: 999;
+    }
+</style>
 <body>
 
 <div class="layui-fluid">
@@ -67,78 +72,119 @@
                 title: '添加表单',
                 type: 2,
                 maxmin: true,
-                area: ['80%', '80%'],
-                content: '/modelView/teach/addOrEditTeachRevolution/0'
+                area: ['80%', '60%'],
+                content: '/modelView/foreign/addOrEditForeignPractice/0'
             });
         })
         var tableIns = table.render({
             elem: '#userTable',
+            width: $(window).width()*0.96,
             height: "full-200",
             cellMinWidth: 80,
-            url: '/teachRevolution/page',
+            url: '/foreignPractise/page',
             where: {},
             page: true,
             limits: [10, 20, 30, 40, 50],
             cols: [
                 [
                     {
-                        field: 'id',
-                        title: '序号',
+                        field: 'jobNo',
+                        title: '工号',
                         align: 'center',
                     },
                     {
-                        field: 'type',
-                        title: '类型',
+                        field: 'teacherName',
+                        title: '教师姓名',
+                        align: 'center',
+                    },
+                    {
+                        field: 'position',
+                        title: '职称',
+                        align: 'center',
+                    },
+                    {
+                        field: 'education',
+                        title: '学历',
+                        align: 'center',
+                    },
+                    {
+                        field: 'unit',
+                        title: '单位',
                         align: 'center',
                     },
                     {
                         field: 'course',
-                        title: '本科教学工程类别',
+                        title: '主要课程',
                         align: 'center',
                     },
                     {
-                        field: 'level',
-                        title: '级别',
+                        field: 'className',
+                        title: '主要班级',
                         align: 'center',
                     },
                     {
-                        field: 'projectName',
-                        title: '项目名称',
+                        field: 'studentAmount',
+                        title: '总人数',
                         align: 'center',
                     },
                     {
-                        field: 'approvalDate',
-                        title: '立项年月',
+                        field: 'place',
+                        title: '开课地点',
                         align: 'center',
                     },
                     {
-                        field: 'buildPeriod',
-                        title: '建设周期',
+                        field: 'teachType',
+                        title: '教学形式',
                         align: 'center',
                     },
                     {
-                        field: 'yearFinishStatus',
-                        title: '年度建设任务完成情况',
+                        field: 'weekHour',
+                        title: '周学时数',
                         align: 'center',
                     },
                     {
-                        field: 'projectBuildStatus',
-                        title: '项目建设情况',
+                        field: 'weeks',
+                        title: '上课周数',
                         align: 'center',
                     },
                     {
-                        field: 'chargeMan',
-                        title: '项目负责人',
+                        field: 'startDate',
+                        title: '开始时间',
                         align: 'center',
                     },
                     {
-                        field: 'yearPoint',
-                        title: '当年业绩点',
+                        field: 'endDate',
+                        title: '结束时间',
                         align: 'center',
                     },
                     {
-                        field: 'projectPoint',
-                        title: '本项目总业绩点',
+                        field: 'classHour',
+                        title: '总课时',
+                        align: 'center',
+                    },
+                    {
+                        field: 'inspectType',
+                        title: '考核方式',
+                        align: 'center',
+                    },
+                    {
+                        field: 'resultType',
+                        title: '成果形式',
+                        align: 'center',
+                    },
+                    {
+                        field: 'price',
+                        title: '单课时费用',
+                        align: 'center',
+                    },
+                    {
+                        field: 'totalPrice',
+                        title: '总费用',
+                        align: 'center',
+                    },
+                    {
+                        field: 'remark',
+                        title: '备注',
                         align: 'center',
                     },
                     {
@@ -147,7 +193,9 @@
                         toolbar: '#statusStr'
                     },
                     {
+                        fixed: 'right',
                         title: '操作',
+                        width: 200,
                         align: 'center',
                         toolbar: '#operation'
                     },
@@ -173,7 +221,7 @@
         function save(data) {
             $.ajax({
                 type: "post",
-                url: "/teachRevolution/saveOrUpdate",
+                url: "/foreignPractise/saveOrUpdate",
                 async: false,
                 data: data,
                 success: function (res) {
@@ -198,13 +246,13 @@
                     title: '编辑表单',
                     type: 2,
                     maxmin: true,
-                    area: ['80%', '80%'],
-                    content: "/modelView/teach/addOrEditTeachRevolution/" + id
+                    area: ['80%', '60%'],
+                    content: "/modelView/foreign/addOrEditForeignPractice/" + id
                 });
             } else if (layEvent === 'delete') {
                 $.ajax({
                     type: "get",
-                    url: "/teachRevolution/delete",
+                    url: "/foreignPractise/delete",
                     data: {"id": id},
                     success: function (res) {
                         if (res.errorCode != "0000") {

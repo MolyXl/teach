@@ -42,6 +42,17 @@
                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="delete">删除</a>
             </script>
+            <script type="text/html" id="statusStr">
+                {{# if(d.status == 0){ }}
+                待提交
+                {{# } else if(d.status == 1) { }}
+                待审核
+                {{# } else if(d.status == 2) { }}
+                审核通过
+                {{# } else { }}
+                审核拒绝
+                {{# } }}
+            </script>
         </div>
     </div>
 </div>
@@ -61,7 +72,7 @@
                 title: '添加表单',
                 type: 2,
                 maxmin: true,
-                area: ['70%', '60%'],
+                area: ['80%', '60%'],
                 content: '/modelView/teach/addOrEditTeachCourse/0'
             });
         })
@@ -167,6 +178,11 @@
                         align: 'center',
                     },
                     {
+                        title: '状态',
+                        align: 'center',
+                        toolbar: '#statusStr'
+                    },
+                    {
                         fixed: 'right',
                         title: '操作',
                         width: 200,
@@ -220,7 +236,7 @@
                     title: '编辑表单',
                     type: 2,
                     maxmin: true,
-                    area: ['40%', '40%'],
+                    area: ['80%', '60%'],
                     content: "/modelView/teach/addOrEditTeachCourse/" + id
                 });
             } else if (layEvent === 'delete') {

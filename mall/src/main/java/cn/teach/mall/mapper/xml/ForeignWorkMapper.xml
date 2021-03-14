@@ -27,5 +27,7 @@
     <sql id="Base_Column_List">
         id, job_no, teacher_name, position, education, unit, course, class_name, class_hour, price, total_price, teacher_id, status, create_time, commit_time, audit_time, manager_id
     </sql>
-
+    <select id="pageForForeignWork" resultType="cn.teach.pojo.mall.entity.ForeignWork">
+        select * from foreign_work order by create_time desc
+    </select>
 </mapper>

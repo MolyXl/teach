@@ -1,7 +1,11 @@
 package cn.teach.mall.service;
 
+import cn.teach.common.mvc.Page;
 import cn.teach.pojo.mall.entity.TeachPractisePaper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -13,4 +17,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ITeachPractisePaperService extends IService<TeachPractisePaper> {
 
+    IPage<TeachPractisePaper> pageForTeachPractisePaper(Page<TeachPractisePaper> page, Map<String, Object> param);
 }

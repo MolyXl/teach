@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title>教学改革增量业绩点统计表</title>
+    <title>专业学科竞赛业绩点统计表</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -10,6 +10,11 @@
     <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}" media="all">
     <link rel="stylesheet" th:href="@{/static/style/admin.css}" media="all">
 </head>
+<style>
+    .layui-table-fixed{
+        z-index: 999;
+    }
+</style>
 <body>
 
 <div class="layui-fluid">
@@ -67,78 +72,48 @@
                 title: '添加表单',
                 type: 2,
                 maxmin: true,
-                area: ['80%', '80%'],
-                content: '/modelView/teach/addOrEditTeachRevolution/0'
+                area: ['80%', '60%'],
+                content: '/modelView/teach/practice/addOrEditTeachPractiseCompetition/0'
             });
         })
         var tableIns = table.render({
             elem: '#userTable',
             height: "full-200",
             cellMinWidth: 80,
-            url: '/teachRevolution/page',
+            url: '/teachPractiseCompetition/page',
             where: {},
             page: true,
             limits: [10, 20, 30, 40, 50],
             cols: [
                 [
                     {
-                        field: 'id',
-                        title: '序号',
+                        field: 'jobNo',
+                        title: '工号',
                         align: 'center',
                     },
                     {
-                        field: 'type',
-                        title: '类型',
+                        field: 'teacherName',
+                        title: '教师姓名',
                         align: 'center',
                     },
                     {
-                        field: 'course',
-                        title: '本科教学工程类别',
+                        field: 'competitionName',
+                        title: '专业学科竞赛名称',
                         align: 'center',
                     },
                     {
-                        field: 'level',
-                        title: '级别',
+                        field: 'competitionLevel',
+                        title: '指导专业学科竞赛级别',
                         align: 'center',
                     },
                     {
-                        field: 'projectName',
-                        title: '项目名称',
+                        field: 'competitionAmount',
+                        title: '指导专业学科竞赛参赛人数',
                         align: 'center',
                     },
                     {
-                        field: 'approvalDate',
-                        title: '立项年月',
-                        align: 'center',
-                    },
-                    {
-                        field: 'buildPeriod',
-                        title: '建设周期',
-                        align: 'center',
-                    },
-                    {
-                        field: 'yearFinishStatus',
-                        title: '年度建设任务完成情况',
-                        align: 'center',
-                    },
-                    {
-                        field: 'projectBuildStatus',
-                        title: '项目建设情况',
-                        align: 'center',
-                    },
-                    {
-                        field: 'chargeMan',
-                        title: '项目负责人',
-                        align: 'center',
-                    },
-                    {
-                        field: 'yearPoint',
-                        title: '当年业绩点',
-                        align: 'center',
-                    },
-                    {
-                        field: 'projectPoint',
-                        title: '本项目总业绩点',
+                        field: 'competitionPoint',
+                        title: '指导专业学科竞赛业绩点',
                         align: 'center',
                     },
                     {
@@ -173,7 +148,7 @@
         function save(data) {
             $.ajax({
                 type: "post",
-                url: "/teachRevolution/saveOrUpdate",
+                url: "/teachPractiseCompetition/saveOrUpdate",
                 async: false,
                 data: data,
                 success: function (res) {
@@ -198,13 +173,13 @@
                     title: '编辑表单',
                     type: 2,
                     maxmin: true,
-                    area: ['80%', '80%'],
-                    content: "/modelView/teach/addOrEditTeachRevolution/" + id
+                    area: ['80%', '60%'],
+                    content: "/modelView/teach/practice/addOrEditTeachPractiseCompetition/" + id
                 });
             } else if (layEvent === 'delete') {
                 $.ajax({
                     type: "get",
-                    url: "/teachRevolution/delete",
+                    url: "/teachPractiseCompetition/delete",
                     data: {"id": id},
                     success: function (res) {
                         if (res.errorCode != "0000") {

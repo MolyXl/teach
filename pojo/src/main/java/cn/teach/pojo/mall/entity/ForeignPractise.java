@@ -415,4 +415,5 @@ public class ForeignPractise implements Serializable {
         ", managerId=" + managerId +
         "}";
     }
+
 }
