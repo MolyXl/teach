@@ -36,7 +36,12 @@ public class TeachPractiseCourseController {
      * @Description: 分页
      */
     @RequestMapping(value = "/page")
-    public ResultData page(@RequestParam Map<String, Object> param) {
+    public ResultData page(@RequestParam Map<String, Object> param, HttpSession session) {
+        String roleId = session.getAttribute("roleId").toString();
+        String managerId = session.getAttribute("managerId").toString();
+        if (Integer.parseInt(roleId) != 1) {
+            param.put("teacherId", managerId);
+        }
         Page<TeachPractiseCourse> page = PageHelperUtil.getPageInfo(param);
         IPage<TeachPractiseCourse> pageList = iTeachPractiseCourseService.pageForTeachPractiseCourse(page, param);
         return new ResultData<>(pageList.getTotal(), pageList.getRecords());

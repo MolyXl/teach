@@ -38,6 +38,14 @@
         id, job_no, teacher_name, position, education, unit, course, class_name, student_amount, place, teach_type, week_hour, weeks, start_date, end_date, class_hour, inspect_type, result_type, price, total_price, remark, teacher_id, status, create_time, commit_time, audit_time, manager_id
     </sql>
     <select id="pageForForeignPractise" resultType="cn.teach.pojo.mall.entity.ForeignPractise">
-        select * from foreign_practise order by create_time desc
+        select * from foreign_practise
+        <where>
+            <if test="param != null">
+                <if test="param.teacherId != null and param.teacherId!= ''">
+                    teacher_id = #{param.teacherId}
+                </if>
+            </if>
+        </where>
+        order by create_time desc
     </select>
 </mapper>
