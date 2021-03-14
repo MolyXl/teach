@@ -163,15 +163,15 @@
             saveOrUpdate(data);
         });
         form.on('submit(commitBtn)', function (data) {
-            $("#status").val(1);
+            data.field.status = 1;
             saveOrUpdate(data);
         });
         form.on('submit(approveBtn)', function (data) {
-            $("#status").val(2);
+            data.field.status = 2;
             saveOrUpdate(data);
         });
         form.on('submit(refuseBtn)', function (data) {
-            $("#status").val(3);
+            data.field.status = 3;
             saveOrUpdate(data);
         });
 

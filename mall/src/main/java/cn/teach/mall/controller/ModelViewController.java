@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -40,7 +41,7 @@ public class ModelViewController {
     /**
      * @Author: MaZhuli
      * @Date: 2019/8/16
-     * @Description: 编辑页面
+     * @Description: 二级编辑页面
      */
     @RequestMapping("/{module}/{page}/{id}")
     public ModelAndView edit(@PathVariable("module") String module,
@@ -54,12 +55,41 @@ public class ModelViewController {
     /**
      * @Author: MaZhuli
      * @Date: 2019/8/16
-     * @Description: 列表页
+     * @Description: 三级编辑页面
+     */
+    @RequestMapping("/teach/practice/{page}/{id}")
+    public ModelAndView edit(@PathVariable("page") String page,
+                             @PathVariable(value = "id", required = true) Integer id) {
+        Map map = new HashMap<>();
+        map.put("id", id);
+        return new ModelAndView("teach/practice/" + page, map);
+    }
+
+    /**
+     * @Author: MaZhuli
+     * @Date: 2019/8/16
+     * @Description: 二级列表页
      */
     @RequestMapping("/{module}/{page}")
     public ModelAndView frame(@PathVariable("module") String module,
-                              @PathVariable("page") String page) {
-        return new ModelAndView(module + "/" + page);
+                              @PathVariable("page") String page,
+                              HttpSession session) {
+        Map map = new HashMap<>(1);
+        map.put("roleId", session.getAttribute("roleId"));
+        return new ModelAndView(module + "/" + page, map);
+    }
+
+    /**
+     * @Author: MaZhuli
+     * @Date: 2019/8/16
+     * @Description: 三级列表页
+     */
+    @RequestMapping("/teach/practice/{page}")
+    public ModelAndView frame(@PathVariable("page") String page,
+                              HttpSession session) {
+        Map map = new HashMap<>(1);
+        map.put("roleId", session.getAttribute("roleId"));
+        return new ModelAndView("teach/practice/" + page, map);
     }
 
     @RequestMapping("/system/authoritySetting/{id}")

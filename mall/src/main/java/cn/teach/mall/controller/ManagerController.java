@@ -86,6 +86,7 @@ public class ManagerController {
             session.setAttribute("managerId", one.getId());
             session.setAttribute("managerName", one.getName());
             session.setAttribute("jobNo", one.getJobNo());
+            session.setAttribute("roleId", one.getRoleId());
             return new ResponseEntity<>(ResultErrorCode.SUCCESS, "登录成功", result);
         } else {
             return new ResponseEntity<>(ResultErrorCode.FAIL, "账号或密码错误");
