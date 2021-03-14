@@ -11,7 +11,7 @@
  Target Server Version : 50642
  File Encoding         : 65001
 
- Date: 11/03/2021 22:08:57
+ Date: 14/03/2021 13:14:26
 */
 
 SET NAMES utf8mb4;
@@ -125,7 +125,7 @@ CREATE TABLE `manager`  (
 -- Records of manager
 -- ----------------------------
 INSERT INTO `manager` VALUES (1, '111', '7fa8282ad93047a4d6fe6111c93b308a', 'ML', '111', 1, 1, '2019-08-14 15:48:32');
-INSERT INTO `manager` VALUES (5, '222', '7fa8282ad93047a4d6fe6111c93b308a', 'dfasss', '222', 2, 1, NULL);
+INSERT INTO `manager` VALUES (5, '222', '7fa8282ad93047a4d6fe6111c93b308a', 'dfasss', '222', 2, 1, '2021-03-14 12:30:41');
 
 -- ----------------------------
 -- Table structure for menu
@@ -454,7 +454,8 @@ CREATE TABLE `teach_teaching`  (
   `second_teach_point` decimal(10, 2) NULL DEFAULT NULL COMMENT '下半年课堂教学业绩点',
   `second_inspect_point` decimal(10, 2) NULL DEFAULT NULL COMMENT '下半年监考业绩点',
   `second_other_point` decimal(10, 2) NULL DEFAULT NULL COMMENT '下半年实践教学业绩点',
-  `secong_total_point` decimal(10, 2) NULL DEFAULT NULL COMMENT '下半年合计业绩点',
+  `second_total_point` decimal(10, 2) NULL DEFAULT NULL COMMENT '下半年合计业绩点',
+  `total_point` decimal(10, 2) NULL DEFAULT NULL COMMENT '全年合计业绩点',
   `teacher_id` int(11) NULL DEFAULT NULL COMMENT '教师id',
   `status` int(1) NULL DEFAULT 0 COMMENT '状态(0 待提交 ,1 待审核,2审核通过,3审核驳回)',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
@@ -462,12 +463,11 @@ CREATE TABLE `teach_teaching`  (
   `audit_time` datetime(0) NULL DEFAULT NULL COMMENT '审核时间',
   `manager_id` int(11) NULL DEFAULT NULL COMMENT '审核人id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '教师教学工作量汇总表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '教师教学工作量汇总表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of teach_teaching
 -- ----------------------------
-INSERT INTO `teach_teaching` VALUES (1, '111', 'ML', 1.00, 2.00, 3.00, 6.00, 1.00, 34.00, 2.00, 37.00, 1, 0, '2021-03-11 22:01:55', NULL, NULL, NULL);
-INSERT INTO `teach_teaching` VALUES (2, '222', 'dfasss', 11.00, 1.00, 1.00, NULL, 1.00, 1.00, 1.00, NULL, 5, 0, '2021-03-11 22:07:02', NULL, NULL, NULL);
+INSERT INTO `teach_teaching` VALUES (8, '111', 'ML', 1.00, 1.00, 1.00, 3.00, 1.00, 1.00, 1.00, 3.00, 6.00, 1, 0, '2021-03-14 13:03:11', NULL, NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

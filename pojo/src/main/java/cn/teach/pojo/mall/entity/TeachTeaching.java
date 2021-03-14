@@ -74,7 +74,12 @@ public class TeachTeaching implements Serializable {
     /**
      * 下半年合计业绩点
      */
-    private BigDecimal secongTotalPoint;
+    private BigDecimal secondTotalPoint;
+
+    /**
+     * 全年合计业绩点
+     */
+    private BigDecimal totalPoint;
 
     /**
      * 教师id
@@ -193,12 +198,20 @@ public class TeachTeaching implements Serializable {
         this.secondOtherPoint = secondOtherPoint;
     }
 
-    public BigDecimal getSecongTotalPoint() {
-        return secongTotalPoint;
+    public BigDecimal getSecondTotalPoint() {
+        return secondTotalPoint;
     }
 
-    public void setSecongTotalPoint(BigDecimal secongTotalPoint) {
-        this.secongTotalPoint = secongTotalPoint;
+    public void setSecondTotalPoint(BigDecimal secondTotalPoint) {
+        this.secondTotalPoint = secondTotalPoint;
+    }
+
+    public BigDecimal getTotalPoint() {
+        return totalPoint;
+    }
+
+    public void setTotalPoint(BigDecimal totalPoint) {
+        this.totalPoint = totalPoint;
     }
 
     public Integer getTeacherId() {
@@ -262,7 +275,7 @@ public class TeachTeaching implements Serializable {
                 ", secondTeachPoint=" + secondTeachPoint +
                 ", secondInspectPoint=" + secondInspectPoint +
                 ", secondOtherPoint=" + secondOtherPoint +
-                ", secongTotalPoint=" + secongTotalPoint +
+                ", secondTotalPoint=" + secondTotalPoint +
                 ", teacherId=" + teacherId +
                 ", status=" + status +
                 ", createTime=" + createTime +

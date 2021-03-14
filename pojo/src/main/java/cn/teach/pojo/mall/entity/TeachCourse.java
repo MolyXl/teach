@@ -349,13 +349,6 @@ public class TeachCourse implements Serializable {
         this.managerId = managerId;
     }
 
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
-    }
 
     @Override
     public String toString() {

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title>添加/编辑表单  </title>
+    <title>添加/编辑表单 </title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -52,7 +52,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">上半年合计业绩点:</label>
             <div class="layui-input-inline">
-                <input type="text" id="firstTotalPoint" name="firstTotalPoint" autocomplete="off"
+                <input type="text" id="firstTotalPoint" name="firstTotalPoint" autocomplete="off" readonly
                        class="layui-input">
             </div>
         </div>
@@ -61,8 +61,7 @@
             <label class="layui-form-label"><span class="required"></span>下半年课堂教学业绩点:</label>
             <div class="layui-input-inline">
                 <input type="text" id="secondTeachPoint" name="secondTeachPoint" lay-verify="required"
-                       autocomplete="off"
-                       class="layui-input">
+                       autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -84,12 +83,17 @@
         <div class="layui-form-item">
             <label class="layui-form-label">下半年合计业绩点:</label>
             <div class="layui-input-inline">
-                <input type="text" id="secondTotalPoint" name="secongTotalPoint"
-                       autocomplete="off"
+                <input type="text" id="secondTotalPoint" name="secongTotalPoint" autocomplete="off" readonly
                        class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item" style="margin-top: 100px;margin-left: 150px">
+        <div class="layui-form-item">
+            <label class="layui-form-label">全年合计业绩点:</label>
+            <div class="layui-input-inline">
+                <input type="text" id="totalPoint" name="totalPoint" autocomplete="off" readonly class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item" style="margin-top: 10px;margin-left: 150px">
             <div class="layui-input-block">
                 <button class="layui-btn" lay-submit lay-filter="subBtn" id="submitBtn" style="margin-left: 50px">保存
                 </button>
@@ -109,6 +113,9 @@
 </div>
 <script th:src="@{/static/layui/layui.js}"></script>
 <script th:src="@{/static/layui/master.js}"></script>
+<script th:inline="javascript">
+    var id = [[${id}]];
+</script>
 <script>
     layui.config({
         base: '/static/'
@@ -124,7 +131,27 @@
             storage.clear();
             location.href = '/';
         }
-
+        $(function () {
+            $.ajax({
+                type: "get",
+                url: "/teachTeaching/get",
+                data: {id: id},
+                success: function (res) {
+                    var data = res.data;
+                    if (res.errorCode === "0000") {
+                        $("#firstTeachPoint").val(data.firstTeachPoint);
+                        $("#firstInspectPoint").val(data.firstInspectPoint);
+                        $("#firstOtherPoint").val(data.firstOtherPoint);
+                        $("#firstTotalPoint").val(data.firstTotalPoint);
+                        $("#secondTeachPoint").val(data.secondTeachPoint);
+                        $("#secondInspectPoint").val(data.secondInspectPoint);
+                        $("#secondOtherPoint").val(data.secondOtherPoint);
+                        $("#secondTotalPoint").val(data.secondTotalPoint);
+                        $("#totalPoint").val(data.totalPoint);
+                    }
+                }
+            })
+        })
         if (manager.roleId != 1) {
             $("#approveBtn").hide();
             $("#refuseBtn").hide();
@@ -164,6 +191,12 @@
                 isRealNum(secondTeachPoint) && isRealNum(secondInspectPoint) && isRealNum(secondOtherPoint)) {
                 $("#firstTotalPoint").val(Number(firstTeachPoint) + Number(firstInspectPoint) + Number(firstOtherPoint));
                 $("#secondTotalPoint").val(Number(secondTeachPoint) + Number(secondInspectPoint) + Number(secondOtherPoint));
+                var firstTotalPoint = $("#firstTotalPoint").val();
+                var secondTotalPoint = $("#secondTotalPoint").val();
+                $("#totalPoint").val(Number(firstTotalPoint) + Number(secondTotalPoint));
+                data.field.firstTotalPoint = $("#firstTotalPoint").val();
+                data.field.secondTotalPoint = $("#secondTotalPoint").val();
+                data.field.totalPoint = $("#totalPoint").val();
             } else {
                 alert("输入数据格式不正确，请重新输入");
                 return;

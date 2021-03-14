@@ -40,6 +40,17 @@
                 {{# } else { }}
                 {{# } }}
             </script>
+            <script type="text/html" id="statusStr">
+                {{# if(d.status == 0){ }}
+                待提交
+                {{# } else if(d.status == 1) { }}
+                待审核
+                {{# } else if(d.status == 2) { }}
+                审核通过
+                {{# } else { }}
+                审核拒绝
+                {{# } }}
+            </script>
         </div>
     </div>
 </div>
@@ -119,14 +130,19 @@
                         align: 'center',
                     },
                     {
-                        field: 'secongTotalPoint',
+                        field: 'secondTotalPoint',
                         title: '下半年合计业绩点',
                         align: 'center',
                     },
                     {
-                        field: 'status',
+                        field: 'totalPoint',
+                        title: '全年合计业绩点',
+                        align: 'center',
+                    },
+                    {
                         title: '状态',
                         align: 'center',
+                        toolbar: '#statusStr'
                     },
                     {
                         title: '操作',
@@ -176,14 +192,7 @@
             var id = data.id;
             var layEvent = obj.event;
             if (layEvent === 'edit') {
-                edit("/modelView/teach/editRole/" + id, "编辑表单", "40%", "40%", true, table, save);
-                layer.open({
-                    title: '添加表单',
-                    type: 2,
-                    maxmin: true,
-                    area: ['40%', '40%'],
-                    content: '/modelView/teach/addOrEditTeachTeaching/' + id
-                });
+                edit("/modelView/teach/addOrEditTeachTeaching/" + id, "编辑表单", "50%", "80%", true, table, save);
             } else if (layEvent === 'delete') {
                 $.ajax({
                     type: "get",
