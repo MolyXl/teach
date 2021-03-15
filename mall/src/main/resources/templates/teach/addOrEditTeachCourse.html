@@ -28,129 +28,139 @@
         <input type="hidden" id="id" name="id" th:value="${id}">
         <input type="hidden" id="status" name="status"/>
         <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>课程名称:</label>
-            <div class="layui-input-inline">
-                <input type="text" id="courseName" name="courseName" lay-verify="required" autocomplete="off"
-                       class="layui-input" placeholder="请输入">
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"></span>课程名称:</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="courseName" name="courseName" lay-verify="required" autocomplete="off"
+                           class="layui-input" placeholder="请输入">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"></span>上课班级:</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="className" name="className" lay-verify="required"
+                           autocomplete="off"
+                           class="layui-input" placeholder="请输入">
+                </div>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>上课班级:</label>
-            <div class="layui-input-inline">
-                <input type="text" id="className" name="className" lay-verify="required"
-                       autocomplete="off"
-                       class="layui-input" placeholder="请输入">
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"></span>类型:</label>
+                <div class="layui-input-inline">
+                    <!--                类别(1,课堂;2,课程实践;3,实验课)-->
+                    <select name="type" lay-verify="required" id="type" class="layui-input" autocomplete="off">
+                           <option value="">请选择</option>
+                           <option value="课堂">课堂</option>
+                           <option value="课程实践">课程实践</option>
+                           <option value="实验课">实验课</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"/>课程类型:</label>
+                <div class="layui-input-inline">
+                    <!--                课程类型(1,理科专业理论课;2,文科专业理论课;3,通识教育必修理论课;4,通识教育必修大学英语课;5,理工类实验课;6,通识教育必修大学体育课;7,音乐技巧课;8,美术技巧课;9,体育技能课;10,通识教育选修课;11,外语专业课)-->
+                    <select name="courseType" lay-verify="required" id="courseType" class="layui-input" autocomplete="off">
+                           <option value="">请选择</option>
+                           <option value="理科专业理论课">理科专业理论课</option>
+                           <option value="文科专业理论课">文科专业理论课</option>
+                           <option value="通识教育必修理论课">通识教育必修理论课</option>
+                           <option value="通识教育必修大学英语课">通识教育必修大学英语课</option>
+                           <option value="理工类实验课">理工类实验课</option>
+                           <option value="通识教育必修大学体育课">通识教育必修大学体育课</option>
+                           <option value="音乐技巧课">音乐技巧课</option>
+                           <option value="美术技巧课">美术技巧课</option>
+                           <option value="体育技能课">体育技能课</option>
+                           <option value="通识教育选修课">通识教育选修课</option>
+                           <option value="外语专业课">外语专业课</option>
+                    </select>
+                </div>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>类型:</label>
-            <div class="layui-input-inline">
-<!--                <input type="text" id="firstOtherPoint" name="firstOtherPoint" lay-verify="required" autocomplete="off"-->
-<!--                       class="layui-input">-->
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"></span>特殊课程:</label>
+                <div class="layui-input-inline">
+                    <!--                特殊课程(1,专科专业;2,双语课程;3,网络在线开放课;4,外语听力课;5,计算机上机课;6,无)-->
+                    <select name="specialCourse" lay-verify="required" id="specialCourse" class="layui-input" autocomplete="off">
+                           <option value="">请选择</option>
+                           <option value="专科专业">专科专业</option>
+                           <option value="双语课程">双语课程</option>
+                           <option value="网络在线开放课">网络在线开放课</option>
+                           <option value="外语听力课">外语听力课</option>
+                           <option value="计算机上机课">计算机上机课</option>
+                           <option value="无">无</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"></span>周学时数:</label>
+                <div class="layui-input-inline">
+                    <input type="number" id="weekHour" name="weekHour" lay-verify="required"
+                           autocomplete="off"
+                           class="layui-input" placeholder="请输入">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"></span>上课周数:</label>
+                <div class="layui-input-inline">
+                    <input type="number" id="weeks" name="weeks" lay-verify="required"
+                           autocomplete="off"
+                           class="layui-input" placeholder="请输入">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"/>原始总课时数:</label>
+                <div class="layui-input-inline">
+                    <input type="number" id="originalClassHour" name="originalClassHour"
+                           autocomplete="off"
+                           class="layui-input" lay-verify="required" placeholder="请输入">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"/>逃课学生人数:</label>
+                <div class="layui-input-inline">
+                    <input type="number" id="studentAmount" name="studentAmount"
+                           autocomplete="off"
+                           class="layui-input" lay-verify="required" placeholder="请输入">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"/>分班系数:</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="classCoefficient" name="classCoefficient"
+                           autocomplete="off"
+                           class="layui-input" lay-verify="required" placeholder="请输入">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"/>课程系数:</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="courseCoefficient" name="courseCoefficient"
+                           autocomplete="off"
+                           class="layui-input" lay-verify="required" placeholder="请输入">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"/>教学结果系数:</label>
+                <div class="layui-input-inline">
+                    <select name="teachResultCoefficient" lay-verify="required" id="teachResultCoefficient" class="layui-input" autocomplete="off">
+                           <option value="">请选择</option>
+                           <option value=0>0</option>
+                           <option value=1>1</option>
+                           <option value=1.05>1.05</option>
+                    </select>
+                </div>
+            </div>
+        </div>
 
-<!--                类别(1,课堂;2,课程实践;3,实验课)-->
-                <select name="type" lay-verify="required" id="type" class="layui-input" autocomplete="off">
-                       <option value="">请选择</option>
-                       <option value="课堂">课堂</option>
-                       <option value="课程实践">课程实践</option>
-                       <option value="实验课">实验课</option>
-                </select>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"/>课程类型:</label>
-            <div class="layui-input-inline">
-<!--                课程类型(1,理科专业理论课;2,文科专业理论课;3,通识教育必修理论课;4,通识教育必修大学英语课;5,理工类实验课;6,通识教育必修大学体育课;7,音乐技巧课;8,美术技巧课;9,体育技能课;10,通识教育选修课;11,外语专业课)-->
-                <select name="courseType" lay-verify="required" id="courseType" class="layui-input" autocomplete="off">
-                       <option value="">请选择</option>
-                       <option value="理科专业理论课">理科专业理论课</option>
-                       <option value="文科专业理论课">文科专业理论课</option>
-                       <option value="通识教育必修理论课">通识教育必修理论课</option>
-                       <option value="通识教育必修大学英语课">通识教育必修大学英语课</option>
-                       <option value="理工类实验课">理工类实验课</option>
-                       <option value="通识教育必修大学体育课">通识教育必修大学体育课</option>
-                       <option value="音乐技巧课">音乐技巧课</option>
-                       <option value="美术技巧课">美术技巧课</option>
-                       <option value="体育技能课">体育技能课</option>
-                       <option value="通识教育选修课">通识教育选修课</option>
-                       <option value="外语专业课">外语专业课</option>
-                </select>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>特殊课程:</label>
-            <div class="layui-input-inline">
-<!--                特殊课程(1,专科专业;2,双语课程;3,网络在线开放课;4,外语听力课;5,计算机上机课;6,无)-->
-                <select name="specialCourse" lay-verify="required" id="specialCourse" class="layui-input" autocomplete="off">
-                       <option value="">请选择</option>
-                       <option value="专科专业">专科专业</option>
-                       <option value="双语课程">双语课程</option>
-                       <option value="网络在线开放课">网络在线开放课</option>
-                       <option value="外语听力课">外语听力课</option>
-                       <option value="计算机上机课">计算机上机课</option>
-                       <option value="无">无</option>
-                </select>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>周学时数:</label>
-            <div class="layui-input-inline">
-                <input type="number" id="weekHour" name="weekHour" lay-verify="required"
-                       autocomplete="off"
-                       class="layui-input" placeholder="请输入">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>上课周数:</label>
-            <div class="layui-input-inline">
-                <input type="number" id="weeks" name="weeks" lay-verify="required"
-                       autocomplete="off"
-                       class="layui-input" placeholder="请输入">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"/>原始总课时数:</label>
-            <div class="layui-input-inline">
-                <input type="number" id="originalClassHour" name="originalClassHour"
-                       autocomplete="off"
-                       class="layui-input" lay-verify="required" placeholder="请输入">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"/>逃课学生人数:</label>
-            <div class="layui-input-inline">
-                <input type="number" id="studentAmount" name="studentAmount"
-                       autocomplete="off"
-                       class="layui-input" lay-verify="required" placeholder="请输入">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"/>分班系数:</label>
-            <div class="layui-input-inline">
-                <input type="text" id="classCoefficient" name="classCoefficient"
-                       autocomplete="off"
-                       class="layui-input" lay-verify="required" placeholder="请输入">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"/>课程系数:</label>
-            <div class="layui-input-inline">
-                <input type="text" id="courseCoefficient" name="courseCoefficient"
-                       autocomplete="off"
-                       class="layui-input" lay-verify="required" placeholder="请输入">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"/>教学结果系数:</label>
-            <div class="layui-input-inline">
-                <select name="teachResultCoefficient" lay-verify="required" id="teachResultCoefficient" class="layui-input" autocomplete="off">
-                       <option value="">请选择</option>
-                       <option value=0>0</option>
-                       <option value=1>1</option>
-                       <option value=1.05>1.05</option>
-                </select>
-            </div>
-        </div>
 <!--        <div class="layui-form-item">-->
 <!--            <label class="layui-form-label">课堂教学业绩点:</label>-->
 <!--            <div class="layui-input-inline">-->
@@ -161,29 +171,32 @@
 <!--        </div>-->
         <input type="hidden" id="courseTeachPoing" name="courseTeachPoing"/>
         <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"/>考核类型:</label>
-            <div class="layui-input-inline">
-<!--                考核类型(1,考试;2,考查;3,无)-->
-                <select name="inspectType" lay-verify="required" id="inspectType" class="layui-input" autocomplete="off">
-                       <option value="">请选择</option>
-                       <option value="考试">考试</option>
-                       <option value="考查">考查</option>
-                       <option value="无">无</option>
-                </select>
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"/>考核类型:</label>
+                <div class="layui-input-inline">
+                    <!--                考核类型(1,考试;2,考查;3,无)-->
+                    <select name="inspectType" lay-verify="required" id="inspectType" class="layui-input" autocomplete="off">
+                           <option value="">请选择</option>
+                           <option value="考试">考试</option>
+                           <option value="考查">考查</option>
+                           <option value="无">无</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required">考核类型系数:</label>
+                <div class="layui-input-inline">
+                    <!-- 考核类型系数(1,2.5;2,1;3,0)-->
+                    <select name="inspectTypeCoefficient" lay-verify="required" id="inspectTypeCoefficient" class="layui-input" autocomplete="off">
+                           <option value="">请选择</option>
+                           <option value=2.5>2.5</option>
+                           <option value=1>1</option>
+                           <option value=0>0</option>
+                    </select>
+                </div>
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required">考核类型系数:</label>
-            <div class="layui-input-inline">
-                <!-- 考核类型系数(1,2.5;2,1;3,0)-->
-                <select name="inspectTypeCoefficient" lay-verify="required" id="inspectTypeCoefficient" class="layui-input" autocomplete="off">
-                       <option value="">请选择</option>
-                       <option value=2.5>2.5</option>
-                       <option value=1>1</option>
-                       <option value=0>0</option>
-                </select>
-            </div>
-        </div>
+
 <!--        <div class="layui-form-item">-->
 <!--            <label class="layui-form-label">评卷业绩点:</label>-->
 <!--            <div class="layui-input-inline">-->

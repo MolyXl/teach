@@ -28,115 +28,132 @@
         <input type="hidden" id="id" name="id" th:value="${id}">
         <input type="hidden" id="status" name="status"/>
         <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>职称:</label>
-            <div class="layui-input-inline">
-                <input type="text" id="position" name="position" lay-verify="required" autocomplete="off"
-                       class="layui-input" placeholder="请输入">
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"></span>职称:</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="position" name="position" lay-verify="required" autocomplete="off"
+                           class="layui-input" placeholder="请输入">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"></span>学历:</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="education" name="education" lay-verify="required" autocomplete="off"
+                           class="layui-input" placeholder="请输入">
+                </div>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>学历:</label>
-            <div class="layui-input-inline">
-                <input type="text" id="education" name="education" lay-verify="required" autocomplete="off"
-                       class="layui-input" placeholder="请输入">
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"></span>单位:</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="unit" name="unit" lay-verify="required" autocomplete="off"
+                           class="layui-input" placeholder="请输入">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"></span>主要课程:</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="course" name="course" lay-verify="required" autocomplete="off"
+                           class="layui-input" placeholder="请输入">
+                </div>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>单位:</label>
-            <div class="layui-input-inline">
-                <input type="text" id="unit" name="unit" lay-verify="required" autocomplete="off"
-                       class="layui-input" placeholder="请输入">
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"></span>主要班级:</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="className" name="className" lay-verify="required" autocomplete="off"
+                           class="layui-input" placeholder="请输入">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"></span>总人数:</label>
+                <div class="layui-input-inline">
+                    <input type="number" id="studentAmount" name="studentAmount" lay-verify="required" autocomplete="off"
+                           class="layui-input" placeholder="请输入">
+                </div>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>主要课程:</label>
-            <div class="layui-input-inline">
-                <input type="text" id="course" name="course" lay-verify="required" autocomplete="off"
-                       class="layui-input" placeholder="请输入">
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"></span>开课地点:</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="place" name="place" lay-verify="required" autocomplete="off"
+                           class="layui-input" placeholder="请输入">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"></span>教学形式:</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="teachType" name="teachType" lay-verify="required" autocomplete="off"
+                           class="layui-input" placeholder="请输入">
+                </div>
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>主要班级:</label>
-            <div class="layui-input-inline">
-                <input type="text" id="className" name="className" lay-verify="required" autocomplete="off"
-                       class="layui-input" placeholder="请输入">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>总人数:</label>
-            <div class="layui-input-inline">
-                <input type="number" id="studentAmount" name="studentAmount" lay-verify="required" autocomplete="off"
-                       class="layui-input" placeholder="请输入">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>开课地点:</label>
-            <div class="layui-input-inline">
-                <input type="text" id="place" name="place" lay-verify="required" autocomplete="off"
-                       class="layui-input" placeholder="请输入">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>教学形式:</label>
-            <div class="layui-input-inline">
-                <input type="text" id="teachType" name="teachType" lay-verify="required" autocomplete="off"
-                       class="layui-input" placeholder="请输入">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>周学时数:</label>
-            <div class="layui-input-inline">
-                <input type="number" id="weekHour" name="weekHour" lay-verify="required" autocomplete="off"
-                       class="layui-input" placeholder="请输入">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>上课周数:</label>
-            <div class="layui-input-inline">
-                <input type="number" id="weeks" name="weeks" lay-verify="required" autocomplete="off"
-                       class="layui-input" placeholder="请输入">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>开始时间:</label>
-            <div class="layui-input-inline">
-                <input type="text" name="startDate" id="startDate" lay-verify="date" placeholder="请选择" autocomplete="off" class="layui-input">
 
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"></span>周学时数:</label>
+                <div class="layui-input-inline">
+                    <input type="number" id="weekHour" name="weekHour" lay-verify="required" autocomplete="off"
+                           class="layui-input" placeholder="请输入">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"></span>上课周数:</label>
+                <div class="layui-input-inline">
+                    <input type="number" id="weeks" name="weeks" lay-verify="required" autocomplete="off"
+                           class="layui-input" placeholder="请输入">
+                </div>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>结束时间:</label>
-            <div class="layui-input-inline">
-                <input type="text" name="endDate" id="endDate" lay-verify="date" placeholder="请选择" autocomplete="off" class="layui-input">
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"></span>开始时间:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="startDate" id="startDate" lay-verify="date" placeholder="请选择" autocomplete="off" class="layui-input">
 
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"></span>结束时间:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="endDate" id="endDate" lay-verify="date" placeholder="请选择" autocomplete="off" class="layui-input">
+
+                </div>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>总课时:</label>
-            <div class="layui-input-inline">
-                <input type="number" id="classHour" name="classHour" lay-verify="required" autocomplete="off"
-                       class="layui-input" placeholder="请输入">
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"></span>总课时:</label>
+                <div class="layui-input-inline">
+                    <input type="number" id="classHour" name="classHour" lay-verify="required" autocomplete="off"
+                           class="layui-input" placeholder="请输入">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"></span>考核方式:</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="inspectType" name="inspectType" lay-verify="required" autocomplete="off"
+                           class="layui-input" placeholder="请输入">
+                </div>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>考核方式:</label>
-            <div class="layui-input-inline">
-                <input type="text" id="inspectType" name="inspectType" lay-verify="required" autocomplete="off"
-                       class="layui-input" placeholder="请输入">
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"></span>成果形式:</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="resultType" name="resultType" lay-verify="required" autocomplete="off"
+                           class="layui-input" placeholder="请输入">
+                </div>
             </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>成果形式:</label>
-            <div class="layui-input-inline">
-                <input type="text" id="resultType" name="resultType" lay-verify="required" autocomplete="off"
-                       class="layui-input" placeholder="请输入">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required"></span>单课时费用:</label>
-            <div class="layui-input-inline">
-                <input type="number" id="price" name="price" lay-verify="required" autocomplete="off"
-                       class="layui-input" placeholder="请输入">
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="required"></span>单课时费用:</label>
+                <div class="layui-input-inline">
+                    <input type="number" id="price" name="price" lay-verify="required" autocomplete="off"
+                           class="layui-input" placeholder="请输入">
+                </div>
             </div>
         </div>
         <div class="layui-form-item">
