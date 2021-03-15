@@ -80,7 +80,7 @@
                 title: '添加表单',
                 type: 2,
                 maxmin: true,
-                area: ['50%', '80%'],
+                area: ['50%', '75%'],
                 content: '/modelView/teach/addOrEditTeachTeaching/-1'
             });
         })
@@ -205,7 +205,7 @@
             var id = data.id;
             var layEvent = obj.event;
             if (layEvent === 'edit') {
-                edit("/modelView/teach/addOrEditTeachTeaching/" + id, "编辑表单", "50%", "90%", true, table, save);
+                edit("/modelView/teach/addOrEditTeachTeaching/" + id, "编辑表单", "50%", "85%", true, table, save);
             } else if (layEvent === 'delete') {
                 $.ajax({
                     type: "get",
