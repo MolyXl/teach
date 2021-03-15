@@ -11,7 +11,7 @@
  Target Server Version : 50642
  File Encoding         : 65001
 
- Date: 14/03/2021 13:14:26
+ Date: 15/03/2021 21:03:42
 */
 
 SET NAMES utf8mb4;
@@ -119,13 +119,14 @@ CREATE TABLE `manager`  (
   `status` tinyint(1) NULL DEFAULT 0 COMMENT '状态',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台管理员' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台管理员' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of manager
 -- ----------------------------
 INSERT INTO `manager` VALUES (1, '111', '7fa8282ad93047a4d6fe6111c93b308a', 'ML', '111', 1, 1, '2019-08-14 15:48:32');
 INSERT INTO `manager` VALUES (5, '222', '7fa8282ad93047a4d6fe6111c93b308a', 'dfasss', '222', 2, 1, '2021-03-14 12:30:41');
+INSERT INTO `manager` VALUES (6, '333', '7fa8282ad93047a4d6fe6111c93b308a', '3333', '333', 2, 1, NULL);
 
 -- ----------------------------
 -- Table structure for menu
@@ -153,7 +154,6 @@ INSERT INTO `menu` VALUES (51, 5, '教师教学工作量汇总表', 2, NULL, '/m
 INSERT INTO `menu` VALUES (52, 5, '课堂教学及评卷业绩点统计表', 2, NULL, '/modelView/teach/course', 1);
 INSERT INTO `menu` VALUES (53, 5, '监考听课业绩点统计表', 2, NULL, '/modelView/teach/exam', 1);
 INSERT INTO `menu` VALUES (54, 5, '教学改革增量业绩点统计表', 2, NULL, '/modelView/teach/revolution', 1);
-INSERT INTO `menu` VALUES (55, 5, '实践环节业绩点统计表', 2, NULL, '', 1);
 INSERT INTO `menu` VALUES (61, 6, '外聘工作量汇总表', 2, NULL, '/modelView/foreign/work', 1);
 INSERT INTO `menu` VALUES (62, 6, '外聘教学工作量统计表', 2, NULL, '/modelView/foreign/teach', 1);
 INSERT INTO `menu` VALUES (63, 6, '外聘课程实践工作量统计表', 2, NULL, '/modelView/foreign/practice', 1);
@@ -205,7 +205,6 @@ INSERT INTO `role_menu` VALUES (71, 1, 51);
 INSERT INTO `role_menu` VALUES (72, 1, 52);
 INSERT INTO `role_menu` VALUES (73, 1, 53);
 INSERT INTO `role_menu` VALUES (74, 1, 54);
-INSERT INTO `role_menu` VALUES (75, 1, 55);
 INSERT INTO `role_menu` VALUES (76, 1, 61);
 INSERT INTO `role_menu` VALUES (77, 1, 62);
 INSERT INTO `role_menu` VALUES (78, 1, 63);
@@ -220,7 +219,6 @@ INSERT INTO `role_menu` VALUES (155, 2, 51);
 INSERT INTO `role_menu` VALUES (156, 2, 52);
 INSERT INTO `role_menu` VALUES (157, 2, 53);
 INSERT INTO `role_menu` VALUES (158, 2, 54);
-INSERT INTO `role_menu` VALUES (159, 2, 55);
 INSERT INTO `role_menu` VALUES (160, 2, 81);
 INSERT INTO `role_menu` VALUES (161, 2, 82);
 INSERT INTO `role_menu` VALUES (162, 2, 83);
@@ -264,7 +262,12 @@ CREATE TABLE `teach_course`  (
   `audit_time` datetime(0) NULL DEFAULT NULL COMMENT '审核时间',
   `manager_id` int(11) NULL DEFAULT NULL COMMENT '审核人id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '课堂教学及评卷业绩点统计表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '课堂教学及评卷业绩点统计表' ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of teach_course
+-- ----------------------------
+INSERT INTO `teach_course` VALUES (1, '111', 'ML', 'sdf', 'sfd', '课堂', '理科专业理论课', '外语听力课', 3, 3, 3, 3, 3.00, 3.00, 0.00, 0.00, '考试', 1.00, 1.12, 1, 0, '2021-03-14 23:54:46', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for teach_exam
@@ -463,11 +466,12 @@ CREATE TABLE `teach_teaching`  (
   `audit_time` datetime(0) NULL DEFAULT NULL COMMENT '审核时间',
   `manager_id` int(11) NULL DEFAULT NULL COMMENT '审核人id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '教师教学工作量汇总表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '教师教学工作量汇总表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of teach_teaching
 -- ----------------------------
-INSERT INTO `teach_teaching` VALUES (8, '111', 'ML', 1.00, 1.00, 1.00, 3.00, 1.00, 1.00, 1.00, 3.00, 6.00, 1, 0, '2021-03-14 13:03:11', NULL, NULL, NULL);
+INSERT INTO `teach_teaching` VALUES (8, '111', 'ML', 1.00, 1.00, 1.00, 3.00, 1.00, 1.00, 1.00, 3.00, 6.00, 1, 1, '2021-03-14 13:03:11', '2021-03-14 15:56:10', NULL, NULL);
+INSERT INTO `teach_teaching` VALUES (9, '333', '3333', 1.00, 2.00, 3.00, 6.00, 1.00, 2.00, 2.00, 5.00, 11.00, 6, 2, '2021-03-15 00:06:35', NULL, '2021-03-15 20:51:46', 1);
 
 SET FOREIGN_KEY_CHECKS = 1;
