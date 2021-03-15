@@ -51,6 +51,9 @@
             <div class="layui-form-item">
                 <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="login">登录</button>
             </div>
+            <div class="layui-form-item">
+                <button class="layui-btn layui-btn-fluid" id="register">注册</button>
+            </div>
         </div>
     </div>
 </div>
@@ -73,7 +76,15 @@
         function refresh() {
             $("#code").attr("src", "/code/getCode?ran=" + Math.random());
         }
-
+        $("#register").click(function () {
+            layer.open({
+                title: '注册',
+                type: 2,
+                maxmin: true,
+                area: ['30%', '40%'],
+                content: '/modelView/system/register'
+            });
+        })
 
         //提交
         form.on('submit(login)', function (obj) {
