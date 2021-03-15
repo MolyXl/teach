@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,4 +26,5 @@ public class TeachTeachingServiceImpl extends ServiceImpl<TeachTeachingMapper, T
     public IPage<TeachTeaching> pageForTeachTeaching(Page<TeachTeaching> page, Map<String, Object> param) {
         return this.baseMapper.pageForTeachTeaching(page,param);
     }
+
 }

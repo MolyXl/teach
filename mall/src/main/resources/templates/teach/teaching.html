@@ -27,6 +27,7 @@
                         <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                     </button>-->
                     <button class="layui-btn layuiadmin-btn-admin" id="add">添加</button>
+                    <button class="layui-btn layuiadmin-btn-admin" id="export">导出</button>
                 </div>
             </div>
         </div>
@@ -76,12 +77,15 @@
         var table = layui.table;
         $("#add").click(function () {
             layer.open({
-                title: '添加/编辑表单',
+                title: '添加表单',
                 type: 2,
                 maxmin: true,
                 area: ['50%', '80%'],
                 content: '/modelView/teach/addOrEditTeachTeaching/-1'
             });
+        })
+        $("#export").click(function () {
+            window.location.href = '/teachTeaching/export'
         })
         var tableIns = table.render({
             elem: '#userTable',
@@ -201,7 +205,7 @@
             var id = data.id;
             var layEvent = obj.event;
             if (layEvent === 'edit') {
-                edit("/modelView/teach/addOrEditTeachTeaching/" + id, "编辑表单", "50%", "80%", true, table, save);
+                edit("/modelView/teach/addOrEditTeachTeaching/" + id, "编辑表单", "50%", "90%", true, table, save);
             } else if (layEvent === 'delete') {
                 $.ajax({
                     type: "get",
