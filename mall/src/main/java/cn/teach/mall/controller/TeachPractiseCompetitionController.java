@@ -2,18 +2,22 @@ package cn.teach.mall.controller;
 
 
 import cn.teach.common.mvc.*;
+import cn.teach.common.util.ExcelUtil_JXL;
+import cn.teach.common.util.JsonUtils;
 import cn.teach.common.util.PageHelperUtil;
 import cn.teach.mall.service.ITeachPractiseCompetitionService;
 import cn.teach.pojo.mall.entity.TeachPractiseCompetition;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
-import java.util.Map;
+import java.util.*;
 
 /**
  * <p>
@@ -89,6 +93,35 @@ public class TeachPractiseCompetitionController {
     @RequestMapping("/delete")
     public ResponseEntity<TeachPractiseCompetition> deleteByid(Integer id) {
         return ResponseHelper.returnResponse(iTeachPractiseCompetitionService.removeById(id));
+    }
+
+    /**
+     * @Author: MaZhuli
+     * @Date: 2021/3/8
+     * @Description: 导出
+     */
+    @RequestMapping(value = "/export")
+    public void export(@RequestParam Map<String, Object> param, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+        QueryWrapper<TeachPractiseCompetition> queryWrapper = new QueryWrapper();
+
+        String roleId = session.getAttribute("roleId").toString();
+        String managerId = session.getAttribute("managerId").toString();
+        if (Integer.parseInt(roleId) != 1) {
+            param.put("teacherId", managerId);
+            queryWrapper.eq("teacher_id", managerId);
+        }
+        queryWrapper.eq("status", 2);
+        List<TeachPractiseCompetition> list = iTeachPractiseCompetitionService.list(queryWrapper);
+        List<Map<String, Object>> mapList = new ArrayList<>();
+        mapList = JsonUtils.readValue(JsonUtils.toJSon(list), mapList.getClass());
+        Map<String, Object> headermap = new LinkedHashMap<>();
+        headermap.put("工号", "jobNo");
+        headermap.put("教师姓名", "teacherName");
+        headermap.put("专业学科竞赛名称", "competitionName");
+        headermap.put("指导专业学科竞赛级别", "competitionLevel");
+        headermap.put("指导专业学科竞赛参赛人数", "competitionAmount");
+        headermap.put("指导专业学科竞赛业绩点", "competitionPoint");
+        ExcelUtil_JXL.exportExcel("实践环节专业学科竞赛业绩点统计表.xls", "sheet1", headermap, mapList, response, request);
     }
 }
 
