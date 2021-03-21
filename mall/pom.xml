@@ -40,7 +40,7 @@
     <name>mall</name>
     <description>mall model</description>
     <properties>
-        <start-class>cn.teach.MallApplication</start-class>
+        <start-class>cn.teach.TeachApplication</start-class>
     </properties>
     <profiles>
         <profile>
