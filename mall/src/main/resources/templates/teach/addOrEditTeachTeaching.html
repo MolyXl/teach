@@ -30,23 +30,21 @@
         <div class="layui-form-item">
             <label class="layui-form-label"><span class="required"></span>课堂教学业绩点:</label>
             <div class="layui-input-inline">
-                <input type="text" id="firstTeachPoint" name="firstTeachPoint" lay-verify="required" autocomplete="off"
+                <input type="text" id="firstTeachPoint" name="firstTeachPoint" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label"><span class="required"></span>上半年监考业绩点:</label>
             <div class="layui-input-inline">
-                <input type="text" id="firstInspectPoint" name="firstInspectPoint" lay-verify="required"
-                       autocomplete="off"
+                <input type="text" id="firstInspectPoint" name="firstInspectPoint" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label"><span class="required"></span>上半年实践教学业绩点:</label>
             <div class="layui-input-inline">
-                <input type="text" id="firstOtherPoint" name="firstOtherPoint" lay-verify="required" autocomplete="off"
-                       class="layui-input">
+                <input type="text" id="firstOtherPoint" name="firstOtherPoint" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -60,24 +58,20 @@
         <div class="layui-form-item">
             <label class="layui-form-label"><span class="required"></span>下半年课堂教学业绩点:</label>
             <div class="layui-input-inline">
-                <input type="text" id="secondTeachPoint" name="secondTeachPoint" lay-verify="required"
-                       autocomplete="off" class="layui-input">
+                <input type="text" id="secondTeachPoint" name="secondTeachPoint" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label"><span class="required"></span>下半年监考业绩点:</label>
             <div class="layui-input-inline">
-                <input type="text" id="secondInspectPoint" name="secondInspectPoint" lay-verify="required"
-                       autocomplete="off"
+                <input type="text" id="secondInspectPoint" name="secondInspectPoint" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label"><span class="required"></span>下半年实践教学业绩点:</label>
             <div class="layui-input-inline">
-                <input type="text" id="secondOtherPoint" name="secondOtherPoint" lay-verify="required"
-                       autocomplete="off"
-                       class="layui-input">
+                <input type="text" id="secondOtherPoint" name="secondOtherPoint" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -187,20 +181,14 @@
             var secondTeachPoint = $("#secondTeachPoint").val();
             var secondInspectPoint = $("#secondInspectPoint").val();
             var secondOtherPoint = $("#secondOtherPoint").val();
-            if (isRealNum(firstTeachPoint) && isRealNum(firstInspectPoint) && isRealNum(firstOtherPoint) &&
-                isRealNum(secondTeachPoint) && isRealNum(secondInspectPoint) && isRealNum(secondOtherPoint)) {
-                $("#firstTotalPoint").val(Number(firstTeachPoint) + Number(firstInspectPoint) + Number(firstOtherPoint));
-                $("#secondTotalPoint").val(Number(secondTeachPoint) + Number(secondInspectPoint) + Number(secondOtherPoint));
-                var firstTotalPoint = $("#firstTotalPoint").val();
-                var secondTotalPoint = $("#secondTotalPoint").val();
-                $("#totalPoint").val(Number(firstTotalPoint) + Number(secondTotalPoint));
-                data.field.firstTotalPoint = $("#firstTotalPoint").val();
-                data.field.secondTotalPoint = $("#secondTotalPoint").val();
-                data.field.totalPoint = $("#totalPoint").val();
-            } else {
-                alert("输入数据格式不正确，请重新输入");
-                return;
-            }
+            $("#firstTotalPoint").val(Number(firstTeachPoint) + Number(firstInspectPoint) + Number(firstOtherPoint));
+            $("#secondTotalPoint").val(Number(secondTeachPoint) + Number(secondInspectPoint) + Number(secondOtherPoint));
+            var firstTotalPoint = $("#firstTotalPoint").val();
+            var secondTotalPoint = $("#secondTotalPoint").val();
+            $("#totalPoint").val(Number(firstTotalPoint) + Number(secondTotalPoint));
+            data.field.firstTotalPoint = $("#firstTotalPoint").val();
+            data.field.secondTotalPoint = $("#secondTotalPoint").val();
+            data.field.totalPoint = $("#totalPoint").val();
             var field = data.field;
             $.ajax({
                 type: "post",
